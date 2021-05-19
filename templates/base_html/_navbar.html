@@ -1,0 +1,29 @@
+{% load static %}
+<link rel="stylesheet" href={% static 'css/_navbar.css' %}>
+
+<nav class="navbar navbar-expand-sm navbar-dark sticky-top" style="background-color: rgba(36, 167, 167, 0.743)">
+	<div class="container-fluid px-4 py-2">
+		<a class="navbar-brand" href="{% url 'calliope_web:home' %}"><h1>Portfolio</h1></a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+
+      <div class="gap-2 ">
+        <a href="{% url 'calliope_web:logout' %}"><button type="button" class="btn btn-danger text-nowrap">ログアウト</button></a>
+      </div>
+
+			<hr>
+			<center>
+				<div class="navbar-nav">
+					<a class="nav-link " aria-current="page" href="{% url 'calliope_web:home' %}"><h5>ホーム</h5></a>
+					<a class="nav-link" aria-current="page" href="{% url 'calliope_web:profile' %}"><h5>プロフィール</h5></a>
+
+          {% comment %} <a class="nav-link " aria-current="page" href="{% url 'bss' %}"><h5>掲示板？</h5></a> {% endcomment %}
+
+					<a class="nav-link " aria-current="page" href="{% url 'calliope_web:contact' %}"><h5>問い合わせ</h5></a>
+				</div>
+			</center>
+		</div>
+	</div>
+</nav>

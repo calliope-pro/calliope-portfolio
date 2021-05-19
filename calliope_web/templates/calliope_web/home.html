@@ -1,0 +1,59 @@
+{% extends 'base_html/_base.html' %}
+{% load static %}
+
+{% block head %}
+  <meta name="description" content="home">
+  <title>calliope portfolio</title>
+  <link rel="stylesheet" href=>
+  <script></script>
+{% endblock head %}
+
+{% block body %}
+  <section class='container'>
+    <h1>こんにちは {{ user.username }}さん</h1>
+    <h3>ポートフォリオをご覧いただきありがとうございます。</h3>
+    <p>
+      Instagramなどにも使用されているPythonのWeb開発フレームワークであるDjangoを用いてこのポートフォリオを作成いたしました。
+      Herokuというプラットフォームを用いてこのポートフォリオを稼働させております。
+      ソースコードは<a href="#">GitHub</a>に載せてありますので、ぜひご覧ください。
+    </p>
+    <h5>目的</h5>
+    <p>
+      私は普段バックエンドの開発を行っておりますため、Webデザインは不得手であり、
+      このポートフォリオのデザインはjQuery及び、Bootstrapを多く用いております。
+      <br>
+      そのため、このポートフォリオでは、デザインではなくログイン機能や問い合わせフォームなどの機能をご覧いただきたいと思っております。
+    </p>
+
+    <div>
+      <h5>自己紹介</h5>
+      <div>
+        Pythonをメインとしたプログラミングを行っております。私がPythonで行っていることを以下に挙げます。
+        <ul>
+          <li>Beautifulsoupを用いたスクレイピング</li>
+          <li>requestsを用いたAPI操作</li>
+          <li>seleniumを用いたブラウザの自動操作</li>
+          <li>emailの自動送信</li>
+          <li>Excelやtxtファイルに対する操作</li>
+          <li>ツールのGUI化およびexeファイルの作成</li>
+          <li>AtCoderをはじめたとした競技プログラミング</li>
+          <li>sympyなどを用いた数理計算</li>
+          <li>numpyやpandasを用いたデータ分析</li>
+          <li>sklearnなどを用いた機械学習・AI開発</li>
+          <li>Djangoを用いたWeb制作</li>
+        </ul>
+
+        <p>
+          詳しい実績につきましては、ご興味をお持ちいただけましたら個別にてお話させてください。
+        </p>
+
+        <p>
+          他のプログラミング言語としてはJavaScriptやHTML,CSSを用いることがあります。
+          ソースコードの管理はGit, GitHubを用いております。
+          <br>
+        </p>
+      </div>
+    </div>
+  </section>
+{% endblock body %}
+

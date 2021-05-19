@@ -1,0 +1,33 @@
+{% extends 'base_html/_base.html' %}
+{% load static %}
+
+{% block head %}
+  <meta name="description" content="support">
+  <title>寄付</title>
+  <link rel="stylesheet" href=>
+  <script></script>
+{% endblock head %}
+
+
+{% block body %}
+  <section class="container">
+    {% if amount %}
+      <div class="alert alert-success alert-dismissible" role="alert">
+        {{ amount }}円の寄付ありがとうございます。
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endif %}
+    <form method="post">
+      {% csrf_token %}
+      <div>
+          <h5>payjp決済サービスを用いています</h5>
+          <p>テストカードを用いてください。詳しくは<a href="https://pay.jp/docs/testcard">こちら</a></p>
+          <label for="amount">寄付額:</label>
+          <input type="number" name="amount" id="amount" required><span>円</span>
+      </div>
+
+      <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="{{ public_key }}">
+      </script>
+    </form>
+  </section>
+{% endblock body %}

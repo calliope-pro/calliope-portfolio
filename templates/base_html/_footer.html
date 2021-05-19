@@ -1,0 +1,51 @@
+{% load static %}
+<link rel="stylesheet" href={% static 'css/_footer.css' %}>
+
+<div class='fixed'>
+	<footer class="site-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-6">
+          <h6>About</h6>
+          <div>Hello!</div>
+          <div>This web site is portfolio of calliope</div>
+				</div>
+	
+				<div class="col-xs-6 col-md-3">
+					<h6>Categories</h6>
+					<ul class="footer-links">
+						<li><a href="#">a</a></li>
+					</ul>
+				</div>
+	
+				<div class="col-xs-6 col-md-3">
+					<h6>Quick Links</h6>
+					<ul class="footer-links">
+					<li><a href={% url 'calliope_web:support' %}>Support us</a></li>
+					<li><a href="#">Sitemap</a></li>
+					</ul>
+				</div>
+			</div>
+			<hr>
+		</div>
+	
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-sm-6 col-xs-12">
+					<p class="copyright-text">Copyright &copy; {% now "Y" %} All Rights Reserved by calliope
+					</p>
+				</div>
+		
+				<div class="col-md-4 col-sm-6 col-xs-12">
+				<ul class="social-icons">
+					<li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+					<li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+					<li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+					<li><div class="line-it-button" data-lang="ja" data-type="share-c" data-ver="3" data-url="{{ request.build_absolute_uri }}" data-color="default" data-size="large" data-count="false" style="display: none;"></div></li>
+				</ul>
+				</div>
+        
+			</div>
+		</div>
+	</footer>
+</div>

@@ -1,0 +1,26 @@
+{% extends 'base_html/_base.html' %}
+{% load static %}
+
+{% block head %}
+  <meta name="description" content="user_profile">
+  <title>プロフィール</title>
+  <link rel="stylesheet" href=>
+  <script></script>
+{% endblock head %}
+
+
+{% block body %}
+  <section class="container">
+    <p>ユーザー名:{{ user.username }}</p>
+    {% if line_id %}
+      <p>line連携:{{ line_id }}</p>
+    {% else %}
+      <p>
+        <span>line連携:</span>
+        <a id='lineLoginUrl'>
+          <img src="{% static 'images/calliope_web/btn_login_base.png' %}">
+        </a>
+      </p>
+    {% endif %}
+  </section>
+{% endblock body %}
