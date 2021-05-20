@@ -139,10 +139,11 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'calliope_web.CustomUser'
 
 PUBLIC_PATHS = [
-    '/login/',
+    r'/login/',
+    r'/line-bot/.*'
 ]
 PUBLIC_VIEWS = [
-    'calliope_bot.views',
+
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
