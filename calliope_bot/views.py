@@ -36,17 +36,11 @@ def callback(request):
 @handler.add(FollowEvent)
 def handle_follow(event):
     line_user_id = event.source.user_id
-    line_user, new_created = LineProfile.objects.get_or_create(line_id=line_user_id)
     line_profile = line_bot_api.get_profile(line_user_id)
+    line_user, new_created = LineProfile.objects.get_or_create(line_id=line_user_id)
     line_user.line_icon_url = line_profile.picture_url
     line_user.line_name = line_profile.display_name
     line_user.save()
-    one = f'{line_user_id}{line_profile.picture_url}{line_profile.display_name}'
-    two = f'{line_user.line_id}{line_user.line_icon_url}{line_user.line_name}'
-    line_bot_api.reply_message(
-        event.reply_token,
-        
-    )
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -66,3 +60,7 @@ def handle_message(event):
         reply
     )
 
+@handler.add(UnfollowEvent)
+def handle_unfollow(event):
+    line_user = LineProfile.objects.get(line_id=event.source.user_id)
+    line_user.delete()
