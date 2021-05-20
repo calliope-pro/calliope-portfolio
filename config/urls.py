@@ -19,5 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('calliope_web.urls')),
-    # path('line-bot/', include('calliope_bot.urls')),
+    path('line-bot/', include('calliope_bot.urls')),
 ]
