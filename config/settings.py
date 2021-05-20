@@ -142,7 +142,7 @@ PUBLIC_PATHS = [
     '/login/',
 ]
 PUBLIC_VIEWS = [
-    # 'calliope_bot.views',
+    'calliope_bot.views',
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
