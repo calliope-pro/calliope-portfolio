@@ -15,8 +15,8 @@ from linebot.models import (FollowEvent, ImageMessage, ImageSendMessage,
 
 from .models import LineProfile
 
-line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
-handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
+line_bot_api = LineBotApi(os.environ['LINE_CHANNEL_ACCESS_TOKEN'])
+handler = WebhookHandler(os.environ['LINE_CHANNEL_SECRET'])
 
 @csrf_exempt
 def callback(request):
