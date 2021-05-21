@@ -9,4 +9,6 @@ urlpatterns = [
     path('contact/', views.ContactView.as_view(), name='contact'),
     path('profile/', views.ProfileView.as_view(), name='profile'),
     path('support/', views.SupportView.as_view(), name='support'),
+    path('bss/', views.BssListView.as_view(), name='bss'),
+    path('bss/new/', views.BssCreateView.as_view(), name='bss_create'),
 ]

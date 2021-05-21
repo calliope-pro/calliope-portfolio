@@ -1,4 +1,5 @@
 import os
+from django.urls.base import reverse_lazy
 
 import payjp
 from calliope_bot.models import LineProfile
@@ -8,11 +9,11 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.views.generic import FormView, TemplateView
+from django.views.generic import FormView, TemplateView, CreateView, ListView
 from payjp.error import PayjpException
 
-from .forms import ContactForm
-
+from .forms import ContactForm, BssForm
+from .models import Bss
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -83,6 +84,7 @@ class SupportView(TemplateView):
     def post(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
         try:
+            # print(request.POST)
             amount = request.POST.get('amount')
             payjp_token = request.POST.get('payjp-token')
             # customer = payjp.Customer.
@@ -97,6 +99,29 @@ class SupportView(TemplateView):
             return render(request, self.template_name, context)
         except (PayjpException, Exception):
             return redirect('calliope_web:support')
+
+
+
+class BssCreateView(CreateView):
+    model = Bss
+    template_name = "calliope_web/bss_create.html"
+    context_object_name = 'form'
+    success_url = reverse_lazy('calliope_web:bss')
+    form_class = BssForm
+    
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        form.instance.author = request.user
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+    
+class BssListView(ListView):
+    model = Bss
+    template_name = "calliope_web/bss_list.html"
+    ordering = ['-created_datetime']
+    context_object_name = 'bss_list'
 
     
     

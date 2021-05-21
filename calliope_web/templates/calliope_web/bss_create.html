@@ -1,0 +1,16 @@
+{% extends 'base_html/_base.html' %}
+{% load static %}
+
+{% block head %}
+
+{% endblock head %}
+
+
+{% block body %}
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">投稿</button>
+  </form>
+{% endblock body %}
+

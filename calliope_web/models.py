@@ -1,8 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import (AbstractBaseUser, AbstractUser,
                                         PermissionsMixin, UserManager)
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.core.mail import send_mail
 from django.db import models
+from django.db.models.fields.related import ForeignKey
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
@@ -68,3 +70,28 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+
+class Bss(models.Model):
+    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('author'))
+    body = models.CharField(_('body'), max_length=200)
+    created_datetime = models.DateTimeField(_("created datetime"), auto_now=False, auto_now_add=True)
+    updated_datetime = models.DateTimeField(_("updated datetime"), auto_now=True, auto_now_add=False)
+
+    class Meta:
+        verbose_name = _('bss')
+        verbose_name_plural = _('bss')
+
+    
+
+
+
+
+
+
+
+
+
+
+
+

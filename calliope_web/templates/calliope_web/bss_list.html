@@ -1,0 +1,27 @@
+{% extends 'base_html/_base.html' %}
+{% load static %}
+
+{% block head %}
+
+{% endblock head %}
+
+
+{% block body %}
+  <button class="btn btn-primary" onclick="location.href='{% url "calliope_web:bss_create" %}'">新規作成</button>
+  {% for bss in bss_list %}
+    <p>
+      {% if bss.author == user %}
+      {{ bss.author }}です
+      {% else %}
+      {{ bss.author }}ではない
+      {% endif %}
+      <br>
+      {{ bss.body }}
+      <br>
+      {{ bss.created_datetime }}
+      <br>
+      {{ bss.updated_datetime }}
+    </p>
+  {% endfor %}
+{% endblock body %}
+

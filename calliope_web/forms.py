@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth import get_user_model
+from .models import Bss
 
 
 class ContactForm(forms.Form):
@@ -29,6 +29,11 @@ class ContactForm(forms.Form):
         label='内容',
     )
     
+class BssForm(forms.ModelForm):
+    
+    class Meta:
+        model = Bss
+        fields = ("body",)
 
     
     
