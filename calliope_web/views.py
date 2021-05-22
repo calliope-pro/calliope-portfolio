@@ -147,15 +147,12 @@ class UserCreateView(CreateView):
         user.is_active = False
         user.save()
         
-        current_url = get_current_site(self.request)
-        domain = current_url.domain
-        protocol = self.request.scheme
+        current_url = reverse_lazy('calliope_web:signup')
         token = dumps(user.pk)
         sub = f'{user.username}さん、仮登録が完了しました。'
         context = {
             'token': token,
-            'domain': domain,
-            'protocol': protocol,
+            'current_url': current_url,
         }
         body = render_to_string('calliope_web/email_body.txt', context)
         user.email_user(sub, body)

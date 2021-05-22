@@ -1,4 +1,4 @@
 まだ会員登録手続きは完了しておりませんので、ご注意ください。
 下記URLより本登録をお願い致します。
 
-{{ home_url }}{% url 'calliope_web:signup_done' token %}
+{{ current_url }}{{ token }}/
