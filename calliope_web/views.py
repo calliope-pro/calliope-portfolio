@@ -1,4 +1,5 @@
 import os
+import re
 
 import payjp
 from calliope_bot.models import LineProfile
@@ -8,7 +9,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, FormView, ListView, TemplateView
+from django.views.generic import (CreateView, DetailView, FormView, ListView,
+                                  TemplateView)
 from payjp.error import PayjpException
 
 from .forms import BssForm, ContactForm
@@ -29,8 +31,13 @@ class LoginWebView(LoginView):
     
     def post(self, request, *args, **kwargs):
         form = self.get_form()
-        if not request.POST.get('username') in settings.ALLOWED_LOGIN_USERS:
+        request_username = request.POST.get('username')
+        for allowed_login_user in settings.ALLOWED_LOGIN_USERS:
+            if re.fullmatch(allowed_login_user, request_username):
+                break
+        else:
             form.add_error('username', 'usernameはuser〇〇のみ有効です')
+
         if form.is_valid():
             return self.form_valid(form)
         else:
