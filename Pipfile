@@ -15,6 +15,7 @@ psycopg2 = "*"
 django = "~=3.2"
 line-bot-sdk = "*"
 django-glrm = "*"
+django-widget-tweaks = "*"
 
 [dev-packages]
 

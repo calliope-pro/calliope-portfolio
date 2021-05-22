@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'calliope_web.apps.CalliopeWebConfig',
     'calliope_bot.apps.CalliopeBotConfig',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
