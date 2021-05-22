@@ -2,26 +2,31 @@
 {% load static %}
 
 {% block head %}
-
+<title>一覧</title>
 {% endblock head %}
 
 
 {% block body %}
-  <button class="btn btn-primary" onclick="location.href='{% url "calliope_web:bss_create" %}'">新規作成</button>
-  {% for bss in bss_list %}
-    <p>
-      {% if bss.author == user %}
-      {{ bss.author }}です
-      {% else %}
-      {{ bss.author }}ではない
-      {% endif %}
-      <br>
-      {{ bss.body }}
-      <br>
-      {{ bss.created_datetime }}
-      <br>
-      {{ bss.updated_datetime }}
-    </p>
-  {% endfor %}
+  <section class="container">
+    <button class="btn btn-primary" onclick="location.href='{% url "calliope_web:bss_create" %}'">新規作成</button>
+    {% for bss in bss_list %}
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-subtitle mb-2">{{ bss.author }}</h5>
+        <p class="card-text">{{ bss.body }}</p>
+        <div class="row">
+          <div class="col">
+            <a href="#" class="card-link">詳細</a>
+            {% if bss.author == user %}
+              <a href="#" class="card-link">編集</a>
+            {% endif %}
+          </div>
+          <div class="col align-self-end">{{ bss.updated_datetime }}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
 {% endblock body %}
 

@@ -29,7 +29,9 @@ class LoginWebView(LoginView):
     
     def post(self, request, *args, **kwargs):
         form = self.get_form()
-        if request.POST.get('username') in settings.ALLOWED_LOGIN_USERS and form.is_valid():
+        if not request.POST.get('username') in settings.ALLOWED_LOGIN_USERS:
+            form.add_error('username', 'usernameはuser〇〇のみ有効です')
+        if form.is_valid():
             return self.form_valid(form)
         else:
             return self.form_invalid(form)

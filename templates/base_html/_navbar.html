@@ -1,7 +1,9 @@
 {% load static %}
 <link rel="stylesheet" href={% static 'css/_navbar.css' %}>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
 
-<nav class="navbar navbar-expand-sm navbar-dark sticky-top" style="background-color: rgba(36, 167, 167, 0.743)">
+<nav class="navbar navbar-expand-sm navbar-dark sticky-top" style="background-color: rgba(36, 167, 167, 0.743); font-family: 'Kosugi Maru', sans-serif;">
 	<div class="container-fluid px-4 py-2">
 		<a class="navbar-brand" href="{% url 'calliope_web:home' %}"><h1>Portfolio</h1></a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

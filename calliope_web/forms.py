@@ -34,6 +34,7 @@ class BssForm(forms.ModelForm):
     class Meta:
         model = Bss
         fields = ("body",)
+    
 
     
     
