@@ -1,5 +1,6 @@
 import os
 import re
+from django.http import request
 from django.http.response import HttpResponseBadRequest
 
 import payjp
@@ -147,7 +148,7 @@ class UserCreateView(CreateView):
         user.is_active = False
         user.save()
         
-        current_url = reverse_lazy('calliope_web:signup')
+        current_url = self.request.build_absolute_uri()
         token = dumps(user.pk)
         sub = f'{user.username}さん、仮登録が完了しました。'
         context = {

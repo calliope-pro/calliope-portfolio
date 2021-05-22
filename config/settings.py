@@ -43,9 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'cloudinary_storage',
+    'widget_tweaks',
     'calliope_web.apps.CalliopeWebConfig',
     'calliope_bot.apps.CalliopeBotConfig',
-    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -141,7 +141,7 @@ AUTH_USER_MODEL = 'calliope_web.CustomUser'
 
 PUBLIC_PATHS = [
     r'/login/',
-    r'/signup.*',
+    r'/signup/.*',
     r'/line-bot/.*',
 ]
 PUBLIC_VIEWS = [
