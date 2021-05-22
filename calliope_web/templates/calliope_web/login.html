@@ -16,8 +16,32 @@
       <div class="frm">
         <form method="post">
           {% csrf_token %}
+
           {% render_field form.username placeholder="Enter your username..." %}
+          {% if form.username.help_text %}
+            <small class="form-text text-muted">
+              {{ form.username.help_text }}
+            </small>
+          {% endif %}
+          {% for error in form.username.errors %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+              {{ error }}が発生
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+
           {% render_field form.password placeholder="Enter your password..." %}
+          {% if form.password.help_text %}
+            <alert class="form-text text-muted">
+              {{ form.password.help_text }}
+            </alert>
+          {% endif %}
+          {% for error in form.password.errors %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+              {{ error }}が発生
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
           <button type="submit">ログイン</button>
         </form>
       </div>

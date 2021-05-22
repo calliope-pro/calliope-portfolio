@@ -1,5 +1,4 @@
 import os
-from django.urls.base import reverse_lazy
 
 import payjp
 from calliope_bot.models import LineProfile
@@ -8,12 +7,13 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
-from django.urls import reverse
-from django.views.generic import FormView, TemplateView, CreateView, ListView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView, FormView, ListView, TemplateView
 from payjp.error import PayjpException
 
-from .forms import ContactForm, BssForm
+from .forms import BssForm, ContactForm
 from .models import Bss
+
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -28,10 +28,11 @@ class LoginWebView(LoginView):
         return reverse('calliope_web:home')
     
     def post(self, request, *args, **kwargs):
-        if request.POST.get('username') in settings.ALLOWED_LOGIN_USERS:
-            return super().post(request, *args, **kwargs)
+        form = self.get_form()
+        if request.POST.get('username') in settings.ALLOWED_LOGIN_USERS and form.is_valid():
+            return self.form_valid(form)
         else:
-            return self.form_invalid(self.form_class)
+            return self.form_invalid(form)
 
 
 class LogoutWebView(LogoutView):
