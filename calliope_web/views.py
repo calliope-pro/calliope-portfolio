@@ -1,19 +1,23 @@
 import os
 import re
+from django.http.response import HttpResponseBadRequest
 
 import payjp
 from calliope_bot.models import LineProfile
 from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth import get_user_model
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
+from django.core.signing import BadSignature, SignatureExpired, dumps, loads
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import (CreateView, DetailView, FormView, ListView,
                                   TemplateView)
 from payjp.error import PayjpException
+from django.template.loader import render_to_string
 
-from .forms import BssForm, ContactForm
+from .forms import BssForm, ContactForm, UserCreateForm
 from .models import Bss
 
 
@@ -111,7 +115,6 @@ class SupportView(TemplateView):
             return redirect('calliope_web:support')
 
 
-
 class BssCreateView(CreateView):
     model = Bss
     template_name = "calliope_web/bss_create.html"
@@ -126,13 +129,58 @@ class BssCreateView(CreateView):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
-    
+
+
 class BssListView(ListView):
     model = Bss
     template_name = "calliope_web/bss_list.html"
     ordering = ['-created_datetime']
     context_object_name = 'bss_list'
 
+
+class UserCreateView(CreateView):
+    template_name = 'calliope_web/signup.html'
+    form_class = UserCreateForm
     
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.is_active = False
+        user.save()
+        
+        current_url = get_current_site(self.request)
+        domain = current_url.domain
+        protocol = self.request.scheme
+        token = dumps(user.pk)
+        sub = f'{user.username}さん、仮登録が完了しました。'
+        context = {
+            'token': token,
+            'domain': domain,
+            'protocol': protocol,
+        }
+        body = render_to_string('calliope_web/email_body.txt', context)
+        user.email_user(sub, body)
+        return redirect('calliope_web:signup')
+
+
+class UserCreateDoneView(TemplateView):
+    template_name = "calliope_web/signup_done.html"
+    
+    def get(self, request, *args, **kwargs):
+        token = kwargs.get('token')
+        try:
+            user_pk = loads(token)
+        except (SignatureExpired, BadSignature):
+            return HttpResponseBadRequest()
+        
+        try:
+            user = get_user_model().objects.get(pk=user_pk)
+        except get_user_model().DoesNotExist:
+            return HttpResponseBadRequest()
+        else:
+            user.is_active = True
+            user.save()
+            return render(request, self.template_name, {'user':user})
+
+
     
 
