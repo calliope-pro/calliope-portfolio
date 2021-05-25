@@ -23,6 +23,10 @@
   margin-top:5px;
   letter-spacing:2px
 }
+.site-footer ul{
+  list-style: none;
+  padding-left: 0;
+}
 .site-footer a
 {
   color:#737373;
@@ -46,6 +50,6 @@
   }
   .site-footer .copyright-text,.site-footer
   {
-    text-align:center
+    text-align: left;
   }
 }
