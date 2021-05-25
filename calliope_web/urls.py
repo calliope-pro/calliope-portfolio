@@ -11,6 +11,6 @@ urlpatterns = [
     path('support/', views.SupportView.as_view(), name='support'),
     path('bss/', views.BssListView.as_view(), name='bss'),
     path('bss/new/', views.BssCreateView.as_view(), name='bss_create'),
-    path('signup/', views.UserCreateView.as_view(), name='signup'),
-    path('signup/<token>/', views.UserCreateDoneView.as_view(), name='signup_done')
+    path('signup/', views.SignUpView.as_view(), name='signup'),
+    path('signup/<token>/', views.SignUpDoneView.as_view(), name='signup_done')
 ]

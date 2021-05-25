@@ -139,9 +139,10 @@ class BssListView(ListView):
     context_object_name = 'bss_list'
 
 
-class UserCreateView(CreateView):
+class SignUpView(CreateView):
     template_name = 'calliope_web/signup.html'
     form_class = UserCreateForm
+    timeout_minutes = 30
     
     def form_valid(self, form):
         user = form.save(commit=False)
@@ -156,7 +157,10 @@ class UserCreateView(CreateView):
             'current_url': current_url,
             'username': user.username,
             'password': len(form.cleaned_data['password2']) * '*',
+            'timeout_minutes': self.timeout_minutes,
         }
+        if settings.DEBUG:
+            context['password'] = form.cleaned_data['password2']
         body = render_to_string('calliope_web/email_body.txt', context)
         user.email_user(sub, body)
         context = {
@@ -166,13 +170,13 @@ class UserCreateView(CreateView):
         return render(self.request, 'calliope_web/signup.html', context)
 
 
-class UserCreateDoneView(TemplateView):
+class SignUpDoneView(TemplateView):
     template_name = "calliope_web/signup_done.html"
     
     def get(self, request, *args, **kwargs):
         token = kwargs.get('token')
         try:
-            user_pk = loads(token)
+            user_pk = loads(token, max_age=60*SignUpView.timeout_minutes)
         except (SignatureExpired, BadSignature):
             return HttpResponseBadRequest()
         
