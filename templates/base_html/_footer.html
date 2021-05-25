@@ -30,22 +30,18 @@
 		</div>
 	
 		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-sm-6 col-xs-12">
-					<p class="copyright-text">Copyright &copy; {% now "Y" %} All Rights Reserved by calliope
-					</p>
-				</div>
-		
-				<div class="col-md-4 col-sm-6 col-xs-12">
-				<ul class="social-icons">
-					<li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-					<li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-					<li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-					<li><div class="line-it-button" data-lang="ja" data-type="share-c" data-ver="3" data-url="{{ request.build_absolute_uri }}" data-color="default" data-size="large" data-count="false" style="display: none;"></div></li>
-				</ul>
-				</div>
-        
+
+			<div class="col d-flex justify-content-center mb-4">
+				<a class="d-block px-3 twitter" href="https://twitter.com/share?url={{ request.build_absolute_uri }}&hashtags=calliope" rel="nofollow noopener noreferrer" target="_blank"><i class="fab fa-twitter fa-3x"></i></a>
+				<a class="d-block px-3 line" href="https://social-plugins.line.me/lineit/share?url={{ request.build_absolute_uri }}" rel="nofollow noopener noreferrer" target="_blank"><i class="fab fa-line fa-3x"></i></a>
+				<a class="d-block px-3 facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" rel="nofollow noopener noreferrer" target="_blank"><i class="fab fa-facebook-square fa-3x"></i></a>
 			</div>
+        
+			<center>
+				<p class="copyright-text">Copyright &copy; {% now "Y" %} All Rights Reserved by calliope
+			</center>
+
+
 		</div>
 	</footer>
 </div>

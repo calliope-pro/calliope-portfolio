@@ -17,15 +17,21 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         _('username'),
         max_length=20,
         unique=True,
-        help_text=_('この項目は必須です。全角文字、半角英数字、@/./+/-/_ で20文字以下にしてください。'),
+        help_text=_('この項目は必須です。全角文字、半角英数字、@/./+/-/_ でuserから始まる20文字以下の名前にしてください。'),
         validators=[username_validator],
         error_messages={
-            'unique': _("このユーザーIDはすでに使われています。"),
+            'unique': _("このユーザー名はすでに使われています。"),
         }
     )
     first_name = models.CharField(_('first name'), max_length=150, blank=True)
     last_name = models.CharField(_('last name'), max_length=150, blank=True)
-    email = models.EmailField(_('email address'), blank=True)
+    email = models.EmailField(
+        _('email address'),
+        unique=True,
+        error_messages={
+            'unique': _("このメールアドレスはすでに使われています。"),
+        }
+    )
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,

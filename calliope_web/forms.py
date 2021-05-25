@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.db.models import fields
+from django.core.exceptions import ValidationError
+from django.db.models.query_utils import Q
 from .models import Bss
 from django.contrib.auth.forms import UserCreationForm
 
@@ -46,10 +47,18 @@ class UserCreateForm(UserCreationForm):
         model = get_user_model()
         fields = ('username', 'email', 'password1', 'password2')
     
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if username[:4] != 'user':
+            raise ValidationError('userから始まる20文字以下の名前にしてください。')
+        return username
+    
     def clean(self):
-        email = self.cleaned_data['email']
-        get_user_model().objects.filter(email=email, is_active=False).delete()
+        username = self.cleaned_data.get('username')
+        email = self.cleaned_data.get('email')
+        get_user_model().objects.filter(Q(email=email)|Q(username=username), is_active=False).delete()
         return super().clean()
+        
 
 
 

@@ -154,10 +154,16 @@ class UserCreateView(CreateView):
         context = {
             'token': token,
             'current_url': current_url,
+            'username': user.username,
+            'password': len(form.cleaned_data['password2']) * '*',
         }
         body = render_to_string('calliope_web/email_body.txt', context)
         user.email_user(sub, body)
-        return redirect('calliope_web:signup')
+        context = {
+            'form':self.get_form_class(),
+            'done':True
+        }
+        return render(self.request, 'calliope_web/signup.html', context)
 
 
 class UserCreateDoneView(TemplateView):
