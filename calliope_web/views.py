@@ -1,13 +1,14 @@
 import os
 import re
 from django.http import request
-from django.http.response import HttpResponseBadRequest
+from django.http.response import HttpResponseBadRequest, HttpResponseRedirect
+from django.views.generic.base import RedirectView, View
 
 import payjp
 from calliope_bot.models import LineProfile
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
-from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate, get_user_model, login
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.core.signing import BadSignature, SignatureExpired, dumps, loads
@@ -169,6 +170,12 @@ class SignUpView(CreateView):
         }
         return render(self.request, 'calliope_web/signup.html', context)
 
+
+class LoginTestuser(View):    
+    def get(self, request, *args, **kwargs):
+        user = get_user_model().objects.get(username='testuser')
+        login(request, user)
+        return redirect('calliope_web:home')
 
 class SignUpDoneView(TemplateView):
     template_name = "calliope_web/signup_done.html"
