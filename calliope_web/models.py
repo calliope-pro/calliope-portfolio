@@ -88,7 +88,6 @@ class Bss(models.Model):
         verbose_name = _('bss')
         verbose_name_plural = _('bss')
 
-    
 
 
 

@@ -16,7 +16,7 @@
         <p class="card-text">{{ bss.body }}</p>
         <div class="row">
           <div class="col">
-            <a href="#" class="card-link">詳細</a>
+            <a href={% url 'calliope_web:bss_detail' bss.pk %} class="card-link">詳細</a>
             {% if bss.author == user %}
               <a href="#" class="card-link">編集</a>
             {% endif %}

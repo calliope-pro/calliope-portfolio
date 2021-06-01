@@ -1,23 +1,21 @@
 import os
 import re
-from django.http import request
-from django.http.response import HttpResponseBadRequest, HttpResponseRedirect
-from django.views.generic.base import RedirectView, View
 
 import payjp
 from calliope_bot.models import LineProfile
 from django.conf import settings
-from django.contrib.sites.shortcuts import get_current_site
-from django.contrib.auth import authenticate, get_user_model, login
+from django.contrib.auth import get_user_model, login
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.core.signing import BadSignature, SignatureExpired, dumps, loads
+from django.http.response import HttpResponseBadRequest
 from django.shortcuts import redirect, render
+from django.template.loader import render_to_string
 from django.urls import reverse, reverse_lazy
 from django.views.generic import (CreateView, DetailView, FormView, ListView,
                                   TemplateView)
+from django.views.generic.base import View
 from payjp.error import PayjpException
-from django.template.loader import render_to_string
 
 from .forms import BssForm, ContactForm, UserCreateForm
 from .models import Bss
@@ -74,7 +72,7 @@ class ContactView(FormView):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
-        
+
 
 class ProfileView(TemplateView):
     template_name = 'calliope_web/profile.html'
@@ -177,6 +175,7 @@ class LoginTestuser(View):
         login(request, user)
         return redirect('calliope_web:home')
 
+
 class SignUpDoneView(TemplateView):
     template_name = "calliope_web/signup_done.html"
     
@@ -197,5 +196,9 @@ class SignUpDoneView(TemplateView):
             return render(request, self.template_name, {'user':user})
 
 
-    
+class BssDetailView(DetailView):
+    model = Bss
+    template_name = "calliope_web/bss_detail.html"
+    context_object_name = 'bss'
+
 

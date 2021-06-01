@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'cloudinary',
     'cloudinary_storage',
     'calliope_web.apps.CalliopeWebConfig',
@@ -185,3 +187,4 @@ payjp.api_key = os.environ['PRIVATE_KEY_PAYJP']
 SUPERUSER_USERNAME = os.environ['SUPERUSER_USERNAME']
 ALLOWED_LOGIN_USERS = [SUPERUSER_USERNAME, r'user.*']
 
+SITE_ID = 1

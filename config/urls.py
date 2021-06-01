@@ -16,8 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.contrib.sitemaps.views import sitemap, index
+
+from . import sitemaps as sm
+sitemaps = {
+    'static': sm.StaticSitemap,
+    'bss': sm.BssSitemap,
+}
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
     path('', include('calliope_web.urls')),
     path('line-bot/', include('calliope_bot.urls')),
 ]
