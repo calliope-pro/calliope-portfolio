@@ -3,6 +3,8 @@
 
 {% block head %}
 <title>一覧</title>
+<meta name="description" content="all bss">
+<script src="{% static 'calliope_web/js/bss_list.js' %}"></script>
 {% endblock head %}
 
 
@@ -19,6 +21,7 @@
             <a href={% url 'calliope_web:bss_detail' bss.pk %} class="card-link">詳細</a>
             {% if bss.author == user %}
               <a href={% url 'calliope_web:bss_update' bss.pk %} class="card-link">編集</a>
+              <a href={% url 'calliope_web:bss_delete' bss.pk %} class="card-link" id="confirm_delete">削除</a>
             {% endif %}
           </div>
           <div class="col align-self-end">{{ bss.updated_datetime }}
@@ -29,4 +32,3 @@
     {% endfor %}
   </section>
 {% endblock body %}
-

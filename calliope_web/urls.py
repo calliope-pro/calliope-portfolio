@@ -13,6 +13,7 @@ urlpatterns = [
     path('bss/detail/<int:pk>/', views.BssDetailView.as_view(), name='bss_detail'),
     path('bss/new/', views.BssCreateView.as_view(), name='bss_create'),
     path('bss/update/<int:pk>/', views.BssUpdateView.as_view(), name='bss_update'),
+    path('bss/delete/<int:pk>/', views.BssDeleteView.as_view(), name='bss_delete'),
     path('signup/', views.SignUpView.as_view(), name='signup'),
     path('signup/<token>/', views.SignUpDoneView.as_view(), name='signup_done'),
     path('support/', views.SupportView.as_view(), name='support'),

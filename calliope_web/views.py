@@ -1,5 +1,6 @@
 import os
 import re
+from django.views.generic.edit import DeleteView, DeletionMixin
 
 import payjp
 from calliope_bot.models import LineProfile
@@ -215,3 +216,11 @@ class BssUpdateView(UserPassesTestMixin, UpdateView):
         user = self.request.user
         return user == self.model.objects.get(pk=self.kwargs['pk']).author
 
+class BssDeleteView(DeleteView):
+    model = Bss
+    template_name = "calliope_web/bss_delete.html"
+    success_url = reverse_lazy('calliope_web:bss_list')
+
+    def get(self, request, *args, **kwargs):
+        super().delete(request)
+        return redirect('calliope_web:bss_list')
