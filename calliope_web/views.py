@@ -170,7 +170,7 @@ class SignUpView(CreateView):
         return render(self.request, 'calliope_web/signup.html', context)
 
 
-class LoginTestuser(View):    
+class LoginTestuser(View):
     def get(self, request, *args, **kwargs):
         user = get_user_model().objects.get(username='testuser')
         login(request, user)
