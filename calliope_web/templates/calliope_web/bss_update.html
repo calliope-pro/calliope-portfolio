@@ -1,0 +1,21 @@
+{% extends 'base_html/_base.html' %}
+{% load static %}
+
+{% block head %}
+  <title>編集</title>
+  <meta name="description" content="home">
+
+{% endblock head %}
+
+
+
+{% block body %}
+  <form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">更新</button>
+  </form>
+{% endblock body %}
+
+
+

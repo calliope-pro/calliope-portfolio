@@ -5,6 +5,7 @@ import payjp
 from calliope_bot.models import LineProfile
 from django.conf import settings
 from django.contrib.auth import get_user_model, login
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.core.signing import BadSignature, SignatureExpired, dumps, loads
@@ -13,7 +14,7 @@ from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 from django.urls import reverse, reverse_lazy
 from django.views.generic import (CreateView, DetailView, FormView, ListView,
-                                  TemplateView)
+                                  TemplateView, UpdateView)
 from django.views.generic.base import View
 from payjp.error import PayjpException
 
@@ -119,7 +120,7 @@ class BssCreateView(CreateView):
     model = Bss
     template_name = "calliope_web/bss_create.html"
     context_object_name = 'form'
-    success_url = reverse_lazy('calliope_web:bss')
+    success_url = reverse_lazy('calliope_web:bss_list')
     form_class = BssForm
     
     def post(self, request, *args, **kwargs):
@@ -134,7 +135,7 @@ class BssCreateView(CreateView):
 class BssListView(ListView):
     model = Bss
     template_name = "calliope_web/bss_list.html"
-    ordering = ['-created_datetime']
+    ordering = ['-updated_datetime']
     context_object_name = 'bss_list'
 
 
@@ -201,4 +202,16 @@ class BssDetailView(DetailView):
     template_name = "calliope_web/bss_detail.html"
     context_object_name = 'bss'
 
+
+class BssUpdateView(UserPassesTestMixin, UpdateView):
+    model = Bss
+    template_name = "calliope_web/bss_update.html"
+    fields = ['body']
+
+    def get_success_url(self):
+        return reverse('calliope_web:bss_list')
+
+    def test_func(self):
+        user = self.request.user
+        return user == self.model.objects.get(pk=self.kwargs['pk']).author
 
