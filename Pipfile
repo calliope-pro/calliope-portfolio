@@ -16,6 +16,7 @@ dj-database-url = "*"
 django-cloudinary-storage = "*"
 django-glrm = "*"
 django-widget-tweaks = "*"
+requests = "*"
 
 [dev-packages]
 
