@@ -10,6 +10,12 @@
 
 {% block body %}
   <section class="container">
+    <center>
+      <form method="get">
+        <input type="text" name="query" value={{ request.GET.query }}>
+        <button type="submit">検索</button>
+      </form>
+    </center>
     <button class="btn btn-primary" onclick="location.href='{% url "calliope_web:bss_create" %}'">新規作成</button>
     {% for bss in bss_list %}
     <div class="card">

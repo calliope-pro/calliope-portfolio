@@ -4,6 +4,7 @@ from django.views.generic.edit import DeleteView, DeletionMixin
 
 import payjp
 from calliope_bot.models import LineProfile
+from django.db.models import Q
 from django.conf import settings
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import UserPassesTestMixin
@@ -139,6 +140,15 @@ class BssListView(ListView):
     ordering = ['-updated_datetime']
     context_object_name = 'bss_list'
 
+    def get_queryset(self):
+        query = self.request.GET.get('query')
+        if query:
+            queryset = Bss.objects.filter(Q(author__username__icontains=query) | Q(body__icontains=query))
+        else:
+            queryset = self.model.objects.all()
+        return queryset
+    
+
 
 class SignUpView(CreateView):
     template_name = 'calliope_web/signup.html'
@@ -215,6 +225,7 @@ class BssUpdateView(UserPassesTestMixin, UpdateView):
     def test_func(self):
         user = self.request.user
         return user == self.model.objects.select_related('author').get(pk=self.kwargs['pk']).author
+
 
 class BssDeleteView(UserPassesTestMixin, DeleteView):
     model = Bss
