@@ -214,9 +214,9 @@ class BssUpdateView(UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         user = self.request.user
-        return user == self.model.objects.get(pk=self.kwargs['pk']).author
+        return user == self.model.objects.select_related('author').get(pk=self.kwargs['pk']).author
 
-class BssDeleteView(DeleteView):
+class BssDeleteView(UserPassesTestMixin, DeleteView):
     model = Bss
     template_name = "calliope_web/bss_delete.html"
     success_url = reverse_lazy('calliope_web:bss_list')
@@ -224,3 +224,7 @@ class BssDeleteView(DeleteView):
     def get(self, request, *args, **kwargs):
         super().delete(request)
         return redirect('calliope_web:bss_list')
+
+    def test_func(self):
+        user = self.request.user
+        return user == self.model.objects.select_related('author').get(pk=self.kwargs['pk']).author

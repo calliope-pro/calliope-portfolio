@@ -1,14 +1,16 @@
-{% extends 'base_html/_base.html' %}
+{% extends '_base.html' %}
 {% load static %}
 
 {% block head %}
-<title>詳細</title>
-<meta name="description" content="detail of bss">
+  <title>詳細</title>
+  <meta name="description" content="detail of bss">
 {% endblock head %}
 
 
 {% block body %}
-投稿者:{{ bss.author }}
-本文:{{ bss.body }}
-<a href={% url 'calliope_web:bss_list' %}>一覧に戻る</a>
+  <p>投稿者:{{ bss.author }}</p>
+  <p>本文:{{ bss.body }}</p>
+  <p>最終更新日時:{{ bss.updated_datetime}}</p>
+  <p>作成日時:{{ bss.created_datetime}}</p>
+  <a href={% url 'calliope_web:bss_list' %}>一覧に戻る</a>
 {% endblock body %}
