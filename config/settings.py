@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'calliope_web.apps.CalliopeWebConfig',
     'calliope_bot.apps.CalliopeBotConfig',
+    'calliope_auth.apps.CalliopeAuthConfig',
     'widget_tweaks',
 ]
 
@@ -142,9 +143,7 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'calliope_web.CustomUser'
 
 PUBLIC_PATHS = [
-    r'/login/',
-    r'/login/testuser',
-    r'/signup/.*',
+    r'/auth/.*',
     r'/line-bot/.*',
 ]
 PUBLIC_VIEWS = [
@@ -170,9 +169,9 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/auth/login/'
 # LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/login/'
+LOGOUT_REDIRECT_URL = '/auth/login/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'

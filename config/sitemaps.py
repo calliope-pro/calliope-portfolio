@@ -14,11 +14,11 @@ class StaticSitemap(Sitemap):
             'calliope_web:bss_list',
             'calliope_web:profile',
             'calliope_web:contact',
-            'calliope_web:login',
-            'calliope_web:signup',
+            'calliope_auth:login',
+            'calliope_auth:signup',
             'calliope_web:support',
-            'calliope_web:logout',
-            'calliope_web:signup',
+            'calliope_auth:logout',
+            'calliope_auth:signup',
         ]
     
     def location(self, obj):

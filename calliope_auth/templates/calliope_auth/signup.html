@@ -6,7 +6,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'calliope_web/css/signup.css' %}">
+    <link rel="stylesheet" href="{% static 'calliope_auth/css/signup.css' %}">
     <title>サインアップ</title>
   </head>
 
@@ -53,7 +53,7 @@
           <button type="submit">サインアップ</button>
         </form>
           <p> 
-            <a href="{% url 'calliope_web:login' %}">アカウントをお持ちですか？ログインする</a>
+            <a href="{% url 'calliope_auth:login' %}">アカウントをお持ちですか？ログインする</a>
           </p>
       </div>
   </body>

@@ -28,6 +28,8 @@ sitemaps = {
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+
     path('', include('calliope_web.urls')),
+    path('auth/', include('calliope_auth.urls')),
     path('line-bot/', include('calliope_bot.urls')),
 ]
