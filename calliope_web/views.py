@@ -126,6 +126,8 @@ class BssListView(ListView):
             queryset = Bss.objects.filter(Q(author__username__icontains=query) | Q(body__icontains=query))
         else:
             queryset = self.model.objects.all()
+        if self.ordering:
+            queryset = queryset.order_by(*self.ordering)
         return queryset
 
 
