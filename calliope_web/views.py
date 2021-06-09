@@ -1,9 +1,11 @@
 import os
 import uuid
+from django.http.response import HttpResponseBadRequest
 
 import jwt
 import payjp
 import requests
+from requests.api import request
 from calliope_bot.models import LineProfile
 from django.conf import settings
 from django.contrib.auth import get_user_model, login
@@ -20,13 +22,7 @@ from payjp.error import PayjpException
 from .forms import BssForm, ContactForm
 from .models import Bss
 
-LINE_REDIRECT_URL = os.environ['LINE_REDIRECT_URL']
-LINE_CHANNEL_ID = os.environ['LINE_CHANNEL_ID']
-LINE_CHANNEL_SECRET = os.environ['LINE_CHANNEL_SECRET']
-LINE_RANDOM_STATE = str(uuid.uuid1())
-LINE_NONCE = str(uuid.uuid4())
 
-# Create your views here.
 class HomeView(TemplateView):
     template_name = "calliope_web/home.html"
 
@@ -53,21 +49,67 @@ class ContactView(FormView):
             return self.form_invalid(form)
 
 
+LINE_REDIRECT_URL = settings.LINE_REDIRECT_URL
+LINE_CHANNEL_ID = settings.LINE_CHANNEL_ID
+LINE_CHANNEL_SECRET = settings.LINE_CHANNEL_SECRET
+
+
 class ProfileView(TemplateView):
     template_name = 'calliope_web/profile.html'
+    LINE_RANDOM_STATE = str(uuid.uuid1())
+    LINE_NONCE = str(uuid.uuid4())
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['channel_id'] = LINE_CHANNEL_ID
         context['redirect_url'] = LINE_REDIRECT_URL
-        context['random_state'] = LINE_RANDOM_STATE
-        context['nonce'] = LINE_NONCE
+        context['random_state'] = self.LINE_RANDOM_STATE
+        context['nonce'] = self.LINE_NONCE
+        self.request.session['nonce'] = self.LINE_NONCE
         lineprofile, _ = LineProfile.objects.get_or_create(user=self.request.user)
         if lineprofile.line_id:
-            context['line_id'] = lineprofile.line_id
+            context['lineprofile'] = lineprofile
         else:
             context['line_id'] = None
         return context
+
+
+class LineLinkView(View):
+    URI_ACCESS_TOKEN = 'https://api.line.me/oauth2/v2.1/token'
+    HEADERS = {"Content-Type": "application/x-www-form-urlencoded"}
+
+    def get(self, request, *args, **kwargs):
+        request_code = request.GET.get("code")
+        data_params = {
+            "grant_type": "authorization_code",
+            "code": request_code,
+            "redirect_uri": LINE_REDIRECT_URL,
+            "client_id": LINE_CHANNEL_ID,
+            "client_secret": LINE_CHANNEL_SECRET
+        }
+
+        response_post = requests.post(self.URI_ACCESS_TOKEN, headers=self.HEADERS, data=data_params)
+
+        json_loads = response_post.json()
+        line_id_token = json_loads["id_token"]
+        line_profile = jwt.decode(line_id_token,
+                                LINE_CHANNEL_SECRET,
+                                audience=LINE_CHANNEL_ID,
+                                issuer='https://access.line.me',
+                                algorithms=['HS256']
+        )
+
+        if request.session.pop('nonce') != line_profile.get('nonce'):
+            return HttpResponseBadRequest()
+
+        user = request.user
+        user_line_profile = LineProfile.objects.get(user=user)
+        user_line_profile.line_id = line_profile['sub']
+        user_line_profile.line_icon_url = line_profile['picture']
+        user_line_profile.line_name = line_profile['name']
+        user_line_profile.save()
+
+        return redirect('calliope_web:profile')
 
 
 class SupportView(TemplateView):
@@ -117,7 +159,7 @@ class BssCreateView(CreateView):
 class BssListView(ListView):
     model = Bss
     template_name = "calliope_web/bss_list.html"
-    ordering = ['-updated_datetime']
+    ordering = ['-updateded_at']
     context_object_name = 'bss_list'
 
     def get_queryset(self):
@@ -164,39 +206,3 @@ class BssDeleteView(UserPassesTestMixin, DeleteView):
         return user == self.model.objects.select_related('author').get(pk=self.kwargs['pk']).author
 
 
-class LineLinkView(View):
-    URI_ACCESS_TOKEN = 'https://api.line.me/oauth2/v2.1/token'
-    HEADERS = {"Content-Type": "application/x-www-form-urlencoded"}
-
-    def get(self, request, *args, **kwargs):
-        request_code = request.GET.get("code")
-        data_params = {
-            "grant_type": "authorization_code",
-            "code": request_code,
-            "redirect_uri": LINE_REDIRECT_URL,
-            "client_id": LINE_CHANNEL_ID,
-            "client_secret": LINE_CHANNEL_SECRET
-        }
-
-        response_post = requests.post(self.URI_ACCESS_TOKEN, headers=self.HEADERS, data=data_params)
-
-        json_loads = response_post.json()
-        line_id_token = json_loads["id_token"]
-        line_profile = jwt.decode(line_id_token,
-                                LINE_CHANNEL_SECRET,
-                                audience=LINE_CHANNEL_ID,
-                                issuer='https://access.line.me',
-                                algorithms=['HS256']
-        )
-        
-        if LINE_NONCE != line_profile.get('nonce'):
-            raise RuntimeError('invalid nonce')
-
-        user = request.user
-        user_line_profile = LineProfile.objects.get(user=user)
-        user_line_profile.line_id = line_profile['sub']
-        user_line_profile.line_icon_url = line_profile['picture']
-        user_line_profile.line_name = line_profile['name']
-        user_line_profile.save()
-
-        return redirect('calliope_web:profile')

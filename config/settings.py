@@ -45,10 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'cloudinary',
     'cloudinary_storage',
+    'rest_framework',
+    'widget_tweaks',
     'calliope_web.apps.CalliopeWebConfig',
     'calliope_bot.apps.CalliopeBotConfig',
     'calliope_auth.apps.CalliopeAuthConfig',
-    'widget_tweaks',
+    'api1.apps.Api1Config',
 ]
 
 MIDDLEWARE = [
@@ -145,6 +147,7 @@ AUTH_USER_MODEL = 'calliope_web.CustomUser'
 PUBLIC_PATHS = [
     r'/auth/.*',
     r'/line-bot/.*',
+    r'/api/.*',
 ]
 PUBLIC_VIEWS = [
 
@@ -170,7 +173,7 @@ EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 
 LOGIN_URL = '/auth/login/'
-# LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/auth/login/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
@@ -187,3 +190,7 @@ SUPERUSER_USERNAME = os.environ['SUPERUSER_USERNAME']
 ALLOWED_LOGIN_USERS = [SUPERUSER_USERNAME, r'user.*']
 
 SITE_ID = 1
+
+LINE_REDIRECT_URL = os.environ['LINE_REDIRECT_URL']
+LINE_CHANNEL_ID = os.environ['LINE_CHANNEL_ID']
+LINE_CHANNEL_SECRET = os.environ['LINE_CHANNEL_SECRET']

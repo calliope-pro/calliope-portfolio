@@ -12,8 +12,9 @@
 {% block body %}
   <section class="container">
     <p>ユーザー名:{{ user.username }}</p>
-    {% if line_id %}
-      <p>LINE_ID:{{ line_id }}</p>
+    {% if lineprofile %}
+      <p>LINE_名:{{ lineprofile.line_name }}</p>
+      <p>LINE_アイコン: <img src="{{ lineprofile.line_icon_url }}" alt="line-icon" width="30%" height="30%"></p>
     {% else %}
       <p>
         <span>LINE連携:</span>

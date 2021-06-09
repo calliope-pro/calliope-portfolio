@@ -17,6 +17,7 @@ django-cloudinary-storage = "*"
 django-glrm = "*"
 django-widget-tweaks = "*"
 requests = "*"
+django-rest-framework = "*"
 
 [dev-packages]
 
