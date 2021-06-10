@@ -159,7 +159,7 @@ class BssCreateView(CreateView):
 class BssListView(ListView):
     model = Bss
     template_name = "calliope_web/bss_list.html"
-    ordering = ['-updateded_at']
+    ordering = ['-updated_at']
     context_object_name = 'bss_list'
 
     def get_queryset(self):

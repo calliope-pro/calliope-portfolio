@@ -10,7 +10,7 @@
 {% block body %}
   <p>投稿者:{{ bss.author }}</p>
   <p>本文:{{ bss.body }}</p>
-  <p>最終更新日時:{{ bss.updateded_at}}</p>
+  <p>最終更新日時:{{ bss.updated_at}}</p>
   <p>作成日時:{{ bss.created_at}}</p>
   <a href={% url 'calliope_web:bss_list' %}>一覧に戻る</a>
 {% endblock body %}

@@ -82,7 +82,7 @@ class Bss(models.Model):
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('author'))
     body = models.CharField(_('body'), max_length=200)
     created_at = models.DateTimeField(_("created datetime"), auto_now=False, auto_now_add=True)
-    updateded_at = models.DateTimeField(_("updated datetime"), auto_now=True, auto_now_add=False)
+    updated_at = models.DateTimeField(_("updated datetime"), auto_now=True, auto_now_add=False)
 
     class Meta:
         verbose_name = _('bss')

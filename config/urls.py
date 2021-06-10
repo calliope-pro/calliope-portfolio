@@ -32,5 +32,6 @@ urlpatterns = [
     path('', include('calliope_web.urls')),
     path('auth/', include('calliope_auth.urls')),
     path('line-bot/', include('calliope_bot.urls')),
+    path('api/auth/', include('rest_framework.urls')),
     path('api/v1/', include('api1.urls')),
 ]
