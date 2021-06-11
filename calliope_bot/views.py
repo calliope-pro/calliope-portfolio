@@ -10,8 +10,10 @@ from django.views.decorators.csrf import csrf_exempt
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError, LineBotApiError
 from linebot.models import (FollowEvent, ImageMessage, ImageSendMessage,
-                            MessageEvent, SendMessage, TextMessage,
-                            TextSendMessage, UnfollowEvent)
+                            MessageEvent, SendMessage, TemplateSendMessage,
+                            TextMessage, TextSendMessage, UnfollowEvent)
+from linebot.models.actions import MessageAction
+from linebot.models.template import ButtonsTemplate
 
 from .models import LineProfile
 
@@ -37,7 +39,7 @@ def callback(request):
 def handle_follow(event):
     line_user_id = event.source.user_id
     line_profile = line_bot_api.get_profile(line_user_id)
-    line_user, new_created = LineProfile.objects.get_or_create(line_id=line_user_id)
+    line_user, _ = LineProfile.objects.get_or_create(line_id=line_user_id)
     line_user.line_icon_url = line_profile.picture_url
     line_user.line_name = line_profile.display_name
     line_user.save()
@@ -50,9 +52,20 @@ def handle_message(event):
         PUSH_REPLY_ID = event.source.room_id
     elif event.source.type == 'group':
         PUSH_REPLY_ID = event.source.group_id
+    LINE_USER = LineProfile.objects.get(line_id=USER_ID)
 
     txt = event.message.text.strip()
-    res_txt = txt*2
+    if txt == 'プロフィール':
+        res_txt = TemplateSendMessage(
+            alt_text='プロフィール',
+            template=ButtonsTemplate(
+                thumbnail_image_url=LINE_USER.line_icon_url,
+                title=LINE_USER.line_name,
+                actions=[MessageAction(label='ok', text='success')],
+            )
+        )
+    else:
+        res_txt = txt*2
     reply = [TextSendMessage(text=res_txt)]
         
     line_bot_api.reply_message(
