@@ -62,7 +62,7 @@ def handle_message(event):
                 thumbnail_image_url=LINE_USER.line_icon_url,
                 title=LINE_USER.line_name,
                 text='hello world!',
-                image_aspect_ratio='1:1',
+                # image_aspect_ratio='1:1',
                 actions=[MessageAction(label='ok', text='success'), URIAction(label='login', uri='https://calliope-sample-portfolio.herokuapp.com/')],
             ),
         )
