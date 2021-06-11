@@ -56,7 +56,7 @@ def handle_message(event):
 
     txt = event.message.text.strip()
     if txt == 'プロフィール':
-        res_txt = TemplateSendMessage(
+        reply = TemplateSendMessage(
             alt_text='プロフィール',
             template=ButtonsTemplate(
                 thumbnail_image_url=LINE_USER.line_icon_url,
@@ -65,8 +65,7 @@ def handle_message(event):
             )
         )
     else:
-        res_txt = txt*2
-    reply = [TextSendMessage(text=res_txt)]
+        reply = [TextSendMessage(text=txt*2)]
         
     line_bot_api.reply_message(
         REPLY_TOKEN,
