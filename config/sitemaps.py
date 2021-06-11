@@ -29,12 +29,12 @@ class BssSitemap(Sitemap):
     changefreq = "always"
     priority = 0.1
     def items(self):
-        return Bss.objects.order_by('-updated_datetime')
+        return Bss.objects.order_by('-updated_at')
     
     def location(self, obj):
         return reverse('calliope_web:bss_detail', kwargs={'pk':obj.pk})
     
     def lastmod(self, obj):
-        return obj.updated_datetime
+        return obj.updated_at
 
 
