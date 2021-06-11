@@ -12,7 +12,7 @@ from linebot.exceptions import InvalidSignatureError, LineBotApiError
 from linebot.models import (FollowEvent, ImageMessage, ImageSendMessage,
                             MessageEvent, SendMessage, TemplateSendMessage,
                             TextMessage, TextSendMessage, UnfollowEvent)
-from linebot.models.actions import MessageAction
+from linebot.models.actions import MessageAction, URIAction
 from linebot.models.template import ButtonsTemplate
 
 from .models import LineProfile
@@ -62,7 +62,8 @@ def handle_message(event):
                 thumbnail_image_url=LINE_USER.line_icon_url,
                 title=LINE_USER.line_name,
                 text='hello world!',
-                actions=[MessageAction(label='ok', text='success')],
+                image_aspect_ratio='1:1',
+                actions=[MessageAction(label='ok', text='success'), URIAction(label='login', uri='https://calliope-sample-portfolio.herokuapp.com/')],
             ),
         )
     else:
