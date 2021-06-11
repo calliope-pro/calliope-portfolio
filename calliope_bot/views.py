@@ -61,8 +61,9 @@ def handle_message(event):
             template=ButtonsTemplate(
                 thumbnail_image_url=LINE_USER.line_icon_url,
                 title=LINE_USER.line_name,
+                text='hello world!',
                 actions=[MessageAction(label='ok', text='success')],
-            )
+            ),
         )
     else:
         reply = [TextSendMessage(text=txt*2)]
