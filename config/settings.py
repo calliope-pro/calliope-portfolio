@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'cloudinary_storage',
     'rest_framework',
+    'rest_framework.authtoken',
     'widget_tweaks',
     'calliope_web.apps.CalliopeWebConfig',
     'calliope_bot.apps.CalliopeBotConfig',

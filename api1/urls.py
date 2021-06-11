@@ -3,10 +3,10 @@ from rest_framework import routers
 from . import views
 
 app_name = 'api1'
-router = routers.DefaultRouter()
-router.register(r'bss', views.BssAPIView)
-
 urlpatterns = [
-    path('', include(router.urls)),
-    path('users', views.CustomUserAPIView.as_view())
+    path('bss', views.BssListAPIView.as_view()),
+    path('users', views.CustomUserListAPIView.as_view()),
+    path('users/<str:username>', views.CustomUserAPIView.as_view()),
+    path('check', views.CheckAPIView.as_view()),
+    path('token', views.PublishTokenAPIView.as_view()),
 ]

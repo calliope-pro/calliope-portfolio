@@ -1,3 +1,4 @@
+from calliope_bot.models import LineProfile
 import re
 
 from django.conf import settings
@@ -73,7 +74,11 @@ class SignUpView(CreateView):
 
 class LoginTestuser(View):
     def get(self, request, *args, **kwargs):
-        user = get_user_model().objects.get(username='testuser')
+        if settings.DEBUG:
+            user, _ = get_user_model().objects.get_or_create(username='testuser', email='shgdxhsnszdbgsgmszvxbdmzsawa@azhjsgbmwanvGzjgkxjd.akwgeyrfjzvcxmdbks')
+        else:
+            user = get_user_model().objects.get(username='testuser')
+        LineProfile.objects.select_related('user').get_or_create(user=user)
         login(request, user)
         return redirect('calliope_web:home')
 
@@ -95,4 +100,5 @@ class SignUpDoneView(TemplateView):
         else:
             user.is_active = True
             user.save()
+            LineProfile.objects.select_related('user').create(user=user)
             return render(request, self.template_name, {'user':user})
