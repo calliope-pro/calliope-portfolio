@@ -8,4 +8,5 @@ urlpatterns = [
     path('logout/', views.LogoutWebView.as_view(), name='logout'),
     path('signup/', views.SignUpView.as_view(), name='signup'),
     path('signup/<token>/', views.SignUpDoneView.as_view(), name='signup_done'),
+    path('auth-docs/', views.AuthDocsView.as_view(), name='auth_docs'),
 ]

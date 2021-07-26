@@ -18,7 +18,12 @@
     <div class="container">
       <div class="frm">
         <form method="post">
-          テストユーザーは<a href="{% url 'calliope_auth:login_testuser' %}">こちら</a>から
+          <div class="alert alert-success text-center w-75" role="alert">
+            説明は<a href="{% url 'calliope_auth:auth_docs' %}">こちら</a>
+            <br>
+            <hr>
+            テストユーザーは<a href="{% url 'calliope_auth:login_testuser' %}">こちら</a>から
+          </div>
           {% for error in form.non_field_errors %}
             <div class="alert alert-danger alert-dismissible" role="alert">
               {{ error }}

@@ -102,3 +102,6 @@ class SignUpDoneView(TemplateView):
             user.save()
             LineProfile.objects.select_related('user').create(user=user)
             return render(request, self.template_name, {'user':user})
+
+class AuthDocsView(TemplateView):
+    template_name = 'calliope_auth/auth_docs.html'
