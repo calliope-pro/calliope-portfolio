@@ -18,6 +18,8 @@ django-glrm = "*"
 django-widget-tweaks = "*"
 requests = "*"
 django-rest-framework = "*"
+bs4 = "*"
+html5lib = "*"
 
 [dev-packages]
 

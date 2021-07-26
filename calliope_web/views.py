@@ -1,17 +1,16 @@
 import os
 import uuid
-from django.http.response import HttpResponseBadRequest
 
 import jwt
 import payjp
 import requests
-from requests.api import request
+from bs4 import BeautifulSoup
 from calliope_bot.models import LineProfile
 from django.conf import settings
-from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.mail import send_mail
 from django.db.models import Q
+from django.http.response import HttpResponseBadRequest
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import (CreateView, DetailView, FormView, ListView,
@@ -25,6 +24,23 @@ from .models import Bss
 
 class HomeView(TemplateView):
     template_name = "calliope_web/home.html"
+    atcoder_rate = -1
+    
+    def get_atcoder_rate(self):
+        """
+        自作(Atcoderのレート取得)
+        """
+        response = requests.get('https://atcoder.jp/users/calliope')
+        soup = BeautifulSoup(response.content, features='html5lib')
+        atcoder_rate_string = soup.select_one('#main-container > div.row > div.col-md-9.col-sm-12 > table > tbody > tr:nth-child(2) > td > span').decode_contents()
+
+        self.atcoder_rate = int(atcoder_rate_string)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        self.get_atcoder_rate()
+        context['atcoder_rate'] = self.atcoder_rate
+        return context
 
 
 class ContactView(FormView):
