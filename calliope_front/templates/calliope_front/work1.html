@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Work1</title>
+  
+  <link rel="stylesheet" href={% static 'calliope_front/work1/scss/header.css' %}>
+  <link rel="stylesheet" href={% static 'calliope_front/work1/scss/index.css' %}>
+  <link rel="stylesheet" href={% static 'calliope_front/work1/scss/footer.css' %}>
+</head>
+
+
+<body>
+
+  <header>
+    <div class="logo"><a href={% url 'calliope_front:work1' %}>Front Work</a></div>
+
+    <div class='navbar'>
+      <nav>
+        <ul>
+          <li><a href="#About"><span>About</span></a></li>
+          <li><a href="#Works"><span>Works</span></a></li>
+          <li><a href="#News"><span>News</span></a></li>
+          <li><a href="#Contact"><span>Contact</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+    
+  <img class="mainvisual" src={% static 'calliope_front/work1/images/mainvisual-pc.jpg' %} alt="main-visual">
+
+
+  <section class="About" id="About">
+    <div class="theme">About</div>
+
+    <div class="contents">
+      <p class="author">Xxxxx Ashley</p>
+      <p class="address">2th Floor xxxxx Building x-x-x Nishiazabu, Minato-ku, Tokyo 106-0031 Japan</p>
+
+      <p><span class="prefix">tel:</span><span class="info">000-0000-0000</span></p>
+      <p><span class="prefix">url:</span><span class="info">www.xxxxxx.jp</span></p>
+      <p><span class="prefix">mail:</span><span class="info">xxx@xxxxxx.jp</span></p>
+
+      <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque distinctio possimus, numquam facilis facere, ducimus iure nostrum ipsam velit recusandae architecto nulla assumenda quo praesentium laboriosam similique? Ad, nobis architecto?</p>
+    </div>
+  </section>
+
+
+  <section class="Works" id="Works">
+    <div class="theme">Works</div>
+
+    <div class="image-works">
+      <img src={% static 'calliope_front/work1/images/works1.jpg' %} alt="works1">
+      <img src={% static 'calliope_front/work1/images/works2.jpg' %} alt="works2">
+      <img src={% static 'calliope_front/work1/images/works3.jpg' %} alt="works3">
+      <img src={% static 'calliope_front/work1/images/works4.jpg' %} alt="works4">
+      <img src={% static 'calliope_front/work1/images/works5.jpg' %} alt="works5">
+      <img src={% static 'calliope_front/work1/images/works6.jpg' %} alt="works6">
+    </div>
+  </section>
+
+
+  <section class="News" id="News">
+    <div class="theme">News</div>
+
+    <div class="news-list">
+      <div class="news-date">2020.XX.XX</div>
+      <div>デザイン雑誌「ＸＸＸＸＸＸ Vol.11』に掲載していただきました。</div>
+    </div>
+
+    <div class="news-list">
+      <div class="news-date">2020.XX.XX</div>
+      <div>デザイン雑誌「ＸＸＸＸＸＸ Vol.11』に掲載していただきました。</div>
+    </div>
+
+    <div class="news-list">
+      <div class="news-date">2020.XX.XX</div>
+      <div>デザイン雑誌「ＸＸＸＸＸＸ Vol.11』に掲載していただきました。</div>
+    </div>
+
+    <div class="news-list">
+      <div class="news-date">2020.XX.XX</div>
+      <div>デザイン雑誌「ＸＸＸＸＸＸ Vol.11』に掲載していただきました。</div>
+    </div>
+
+    <div class="news-list">
+      <div class="news-date">2020.XX.XX</div>
+      <div>デザイン雑誌「ＸＸＸＸＸＸ Vol.11』に掲載していただきました。</div>
+    </div>
+  </section>
+
+
+  <section class="Contact" id="Contact">
+    <div class="theme">Contact</div>
+
+    <form class="contact-form" action="" method="get">
+      <div>
+        <span>NAME:</span>
+        <input type="text">
+      </div>
+      
+      <div>
+        <span>E-mail:</span>
+        <input type="text">
+      </div>
+
+      <div class="textarea-div">
+        <span>MESSAGE:</span>
+        <textarea></textarea>
+      </div>
+      
+      <button type="submit">送信</button>
+    </form>
+  </section>
+
+
+  <footer>
+    <div>©2021 My Work</div>
+  </footer>
+</body>
+</html>

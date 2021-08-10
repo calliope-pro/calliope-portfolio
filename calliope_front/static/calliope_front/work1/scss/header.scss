@@ -1,0 +1,80 @@
+@mixin pd-mg-0 {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    margin-top: 50px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+
+    div.logo {
+        font-size: 50px;
+        font-weight: 500;
+        flex: 3;
+        white-space: nowrap;
+    }
+
+    div.navbar {
+        flex: 5;
+    }
+
+    div > a:hover {
+        color: #DFB86F;
+    }
+
+    nav {
+        height: 100%;
+    }
+
+    ul {
+        list-style: none;
+        @include pd-mg-0();
+        width: 100%;
+        height: 100%;
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+
+        li {
+            flex: 1;
+            height: 100%;
+        }
+    }
+
+    a {
+        display:block;
+        color: #000000;
+        height: 100%;
+        text-decoration: none;
+    }
+
+    nav {
+        a {
+            font-size: x-large;
+            position: relative;
+
+            &:hover {
+                color: white;
+                background-color: #E9DEB0;
+                border-radius: 15px;
+            }
+        }
+
+        span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
+
+img.mainvisual {
+    margin-top: 5vh;
+    margin-bottom: 50px;
+    object-fit: cover;
+    width: 100%;
+    height: 55vh;
+}

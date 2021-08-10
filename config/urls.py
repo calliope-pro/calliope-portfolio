@@ -30,6 +30,7 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
 
     path('', include('calliope_web.urls')),
+    path('front/', include('calliope_front.urls', namespace='calliope_front')),
     path('auth/', include('calliope_auth.urls')),
     path('line-bot/', include('calliope_bot.urls')),
     path('api/v1/', include('api1.urls')),
