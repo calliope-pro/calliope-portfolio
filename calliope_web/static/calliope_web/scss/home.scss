@@ -1,0 +1,31 @@
+$color-1: #777777;
+$color-2: #FFFFFF;
+$color-3: #F77B78;
+$color-4: #A6927C;
+$color-5: #7DD3D2;
+
+.welcome {
+    position: relative;
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    @for $top-position from 1 to 4 {
+        .top-position-#{$top-position} {
+            font-size: 80px;
+            color: $color-2;
+            background: linear-gradient(right, $color-3, $color-5);
+            -webkit-background-clip: text;
+            color: transparent;
+            top: 25%*$top-position;
+            position: absolute;
+            left: 20%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+    }
+}
+
+
+

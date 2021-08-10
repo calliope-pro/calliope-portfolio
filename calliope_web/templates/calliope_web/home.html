@@ -4,15 +4,18 @@
 {% block head %}
   <meta name="description" content="home">
   <title>calliope portfolio</title>
-  <link rel="stylesheet" href=>
+  <link rel="stylesheet" href={% static 'calliope_web/scss/home.css' %}>
   <script></script>
 {% endblock head %}
 
 {% block body %}
+  <div class="welcome">
+  <img src="{% static 'calliope_web/images/main_image.jpg' %}" alt="main_image">
+    <h1 class="top-position-1">Hello {{ user.username }}!</h1>
+    <h1 class="top-position-2">Welcome to my</h1>
+    <h1 class="top-position-3">Portfolio!</h1>
+  </div>
   <section class='container'>
-    <h1>こんにちは {{ user.username }}さん</h1>
-    <h3>ポートフォリオをご覧いただきありがとうございます。</h3>
-    <br>
     <p>
       Instagramなどにも使用されているPythonのWeb開発フレームワークであるDjangoを用いてこのポートフォリオを作成いたしました。
       Herokuというプラットフォームを用いてこのポートフォリオを稼働させております。

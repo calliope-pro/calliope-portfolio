@@ -1,0 +1,54 @@
+.welcome {
+  position: relative;
+}
+
+.welcome img {
+  width: 100%;
+  height: auto;
+}
+
+.welcome .top-position-1 {
+  font-size: 80px;
+  color: #FFFFFF;
+  background: -webkit-gradient(linear, right top, left top, from(#F77B78), to(#7DD3D2));
+  background: linear-gradient(right, #F77B78, #7DD3D2);
+  -webkit-background-clip: text;
+  color: transparent;
+  top: 25%;
+  position: absolute;
+  left: 20%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  z-index: 10;
+}
+
+.welcome .top-position-2 {
+  font-size: 80px;
+  color: #FFFFFF;
+  background: -webkit-gradient(linear, right top, left top, from(#F77B78), to(#7DD3D2));
+  background: linear-gradient(right, #F77B78, #7DD3D2);
+  -webkit-background-clip: text;
+  color: transparent;
+  top: 50%;
+  position: absolute;
+  left: 20%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  z-index: 10;
+}
+
+.welcome .top-position-3 {
+  font-size: 80px;
+  color: #FFFFFF;
+  background: -webkit-gradient(linear, right top, left top, from(#F77B78), to(#7DD3D2));
+  background: linear-gradient(right, #F77B78, #7DD3D2);
+  -webkit-background-clip: text;
+  color: transparent;
+  top: 75%;
+  position: absolute;
+  left: 20%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  z-index: 10;
+}
+/*# sourceMappingURL=home.css.map */

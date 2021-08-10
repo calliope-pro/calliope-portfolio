@@ -1,0 +1,93 @@
+header {
+  margin-top: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+header div.logo {
+  font-size: 50px;
+  font-weight: 500;
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
+  white-space: nowrap;
+}
+
+header div.navbar {
+  -webkit-box-flex: 5;
+      -ms-flex: 5;
+          flex: 5;
+}
+
+header div > a:hover {
+  color: #DFB86F;
+}
+
+header nav {
+  height: 100%;
+}
+
+header ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header ul li {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100%;
+}
+
+header a {
+  display: block;
+  color: #000000;
+  height: 100%;
+  text-decoration: none;
+}
+
+header nav a {
+  font-size: x-large;
+  position: relative;
+}
+
+header nav a:hover {
+  color: white;
+  background-color: #E9DEB0;
+  border-radius: 15px;
+}
+
+header nav span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+img.mainvisual {
+  margin-top: 5vh;
+  margin-bottom: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 55vh;
+}
+/*# sourceMappingURL=header.34bb0960c2cc.css.map */
