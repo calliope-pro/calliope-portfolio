@@ -8,47 +8,83 @@
 }
 
 .welcome .top-position-1 {
-  font-size: 80px;
+  font-size: 20px;
   color: #FFFFFF;
   background: -webkit-gradient(linear, right top, left top, from(#F77B78), to(#7DD3D2));
   background: linear-gradient(right, #F77B78, #7DD3D2);
-  -webkit-background-clip: text;
   color: transparent;
+  -webkit-background-clip: text;
+  z-index: 10;
   top: 25%;
   position: absolute;
   left: 20%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  z-index: 10;
+}
+
+@media (min-width: 520px) {
+  .welcome .top-position-1 {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 960px) {
+  .welcome .top-position-1 {
+    font-size: 80px;
+  }
 }
 
 .welcome .top-position-2 {
-  font-size: 80px;
+  font-size: 20px;
   color: #FFFFFF;
   background: -webkit-gradient(linear, right top, left top, from(#F77B78), to(#7DD3D2));
   background: linear-gradient(right, #F77B78, #7DD3D2);
-  -webkit-background-clip: text;
   color: transparent;
+  -webkit-background-clip: text;
+  z-index: 10;
   top: 50%;
   position: absolute;
   left: 20%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  z-index: 10;
+}
+
+@media (min-width: 520px) {
+  .welcome .top-position-2 {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 960px) {
+  .welcome .top-position-2 {
+    font-size: 80px;
+  }
 }
 
 .welcome .top-position-3 {
-  font-size: 80px;
+  font-size: 20px;
   color: #FFFFFF;
   background: -webkit-gradient(linear, right top, left top, from(#F77B78), to(#7DD3D2));
   background: linear-gradient(right, #F77B78, #7DD3D2);
-  -webkit-background-clip: text;
   color: transparent;
+  -webkit-background-clip: text;
+  z-index: 10;
   top: 75%;
   position: absolute;
   left: 20%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  z-index: 10;
+}
+
+@media (min-width: 520px) {
+  .welcome .top-position-3 {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 960px) {
+  .welcome .top-position-3 {
+    font-size: 80px;
+  }
 }
 /*# sourceMappingURL=home.css.map */

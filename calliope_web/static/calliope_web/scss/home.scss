@@ -4,6 +4,21 @@ $color-3: #F77B78;
 $color-4: #A6927C;
 $color-5: #7DD3D2;
 
+$break-point-sm: 520px;
+$break-point-lg: 960px;
+
+@mixin text-grad($color-start, $color-end) {
+    background: linear-gradient(right, $color-start, $color-end);
+    color: transparent;
+    -webkit-background-clip: text;
+}
+
+@mixin media-q($break-point: $break-point-lg) {
+    @media (min-width: $break-point) {
+        @content;
+    }
+}
+
 .welcome {
     position: relative;
     img {
@@ -13,19 +28,26 @@ $color-5: #7DD3D2;
 
     @for $top-position from 1 to 4 {
         .top-position-#{$top-position} {
-            font-size: 80px;
+            font-size: 20px;
             color: $color-2;
-            background: linear-gradient(right, $color-3, $color-5);
-            -webkit-background-clip: text;
-            color: transparent;
+            @include text-grad($color-3, $color-5);
+            z-index: 10;
             top: 25%*$top-position;
             position: absolute;
             left: 20%;
             transform: translateY(-50%);
-            z-index: 10;
+
+            @include media-q($break-point-sm) {
+                font-size: 50px;
+            }
+
+            @include media-q() {
+                font-size: 80px;
+            }
         }
     }
 }
+
 
 
 

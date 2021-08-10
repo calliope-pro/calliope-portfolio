@@ -9,12 +9,13 @@
 {% endblock head %}
 
 {% block body %}
-  <div class="welcome">
-  <img src="{% static 'calliope_web/images/main_image.jpg' %}" alt="main_image">
+  <section class="welcome">
+    <img src="{% static 'calliope_web/images/main_image.jpg' %}" alt="main_image">
     <h1 class="top-position-1">Hello {{ user.username }}!</h1>
     <h1 class="top-position-2">Welcome to my</h1>
     <h1 class="top-position-3">Portfolio!</h1>
-  </div>
+  </section>
+
   <section class='container'>
     <p>
       Instagramなどにも使用されているPythonのWeb開発フレームワークであるDjangoを用いてこのポートフォリオを作成いたしました。
