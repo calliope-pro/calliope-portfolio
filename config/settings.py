@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'calliope_web.apps.CalliopeWebConfig',
     'calliope_bot.apps.CalliopeBotConfig',
     'calliope_auth.apps.CalliopeAuthConfig',
+    'calliope_front.apps.CalliopeFrontConfig',
     'api1.apps.Api1Config',
 ]
 
