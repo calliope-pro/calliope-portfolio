@@ -19,28 +19,30 @@ $break-point-lg: 960px;
     }
 }
 
+
 .welcome {
     position: relative;
+
     img {
         width: 100%;
         height: auto;
     }
-
+    
     @for $top-position from 1 to 4 {
         .top-position-#{$top-position} {
-            font-size: 20px;
+            position: absolute;
+            font-size: 40px;
             color: $color-2;
             @include text-grad($color-3, $color-5);
             z-index: 10;
             top: 25%*$top-position;
-            position: absolute;
             left: 20%;
             transform: translateY(-50%);
-
+            
             @include media-q($break-point-sm) {
-                font-size: 50px;
+                font-size: 55px;
             }
-
+            
             @include media-q() {
                 font-size: 80px;
             }
@@ -51,7 +53,7 @@ $break-point-lg: 960px;
 .container {
     width: 100%;
     margin: 0 auto;
-
+    
     .theme {
         margin-top: 50px;
         margin-bottom: 35px;
@@ -59,7 +61,36 @@ $break-point-lg: 960px;
         font-size: 50px;
         text-align: center;
     }
+
+    .accordion {
+
+        div {
+            display: flex;
+        }
+        
+        div, p {
+            $font-img-height: 25px;
+            width: 100%;
+            
+            font-size: $font-img-height;
+            padding-left: 10%;
+            line-height: $font-img-height;
+            margin-bottom: 20px;
+
+            img {
+                height: $font-img-height;
+                width: $font-img-height;
+                margin-right: 2%;
+
+                &.toggle {
+                    margin-left: auto;
+                }
+            }
+
+        }
+    }
 }
 
-
-
+* {
+    border: 1px, dotted, blue;
+}
