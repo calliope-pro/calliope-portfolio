@@ -49,7 +49,8 @@ $break-point-lg: 960px;
 }
 
 .container {
-    margin: 0 2%;
+    width: 100%;
+    margin: 0 auto;
 
     .theme {
         margin-top: 50px;
@@ -58,10 +59,7 @@ $break-point-lg: 960px;
         font-size: 50px;
         text-align: center;
     }
-
-    
 }
-
 
 
 
