@@ -110,7 +110,6 @@
 .container .accordion div, .container .accordion p {
   width: 100%;
   font-size: 25px;
-  padding-left: 10%;
   line-height: 25px;
   margin-bottom: 20px;
 }
@@ -118,7 +117,7 @@
 .container .accordion div img, .container .accordion p img {
   height: 25px;
   width: 25px;
-  margin-right: 2%;
+  margin-right: 4%;
 }
 
 .container .accordion div img.toggle, .container .accordion p img.toggle {

@@ -73,14 +73,13 @@ $break-point-lg: 960px;
             width: 100%;
             
             font-size: $font-img-height;
-            padding-left: 10%;
             line-height: $font-img-height;
             margin-bottom: 20px;
 
             img {
                 height: $font-img-height;
                 width: $font-img-height;
-                margin-right: 2%;
+                margin-right: 4%;
 
                 &.toggle {
                     margin-left: auto;
