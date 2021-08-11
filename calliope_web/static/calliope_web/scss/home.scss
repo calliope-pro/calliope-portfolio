@@ -31,7 +31,7 @@ $break-point-lg: 960px;
     @for $top-position from 1 to 4 {
         .top-position-#{$top-position} {
             position: absolute;
-            font-size: 40px;
+            font-size: 30px;
             color: $color-2;
             @include text-grad($color-3, $color-5);
             z-index: 10;
@@ -88,8 +88,4 @@ $break-point-lg: 960px;
 
         }
     }
-}
-
-* {
-    border: 1px, dotted, blue;
 }
