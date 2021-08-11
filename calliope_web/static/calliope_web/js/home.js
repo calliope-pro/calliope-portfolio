@@ -10,6 +10,7 @@
 
         function init() {
             $contentList.forEach((element) => {
+                console.log(element);
                 element.style.display = 'none';
             });
         }
@@ -39,6 +40,6 @@
             $menuList[i].addEventListener('click', handleClick);
         }
     }
-    accordion('program-lang-accordion', 'lang', 'detail');
+    accordion('lang-accordion', 'lang', 'detail');
 
 })();

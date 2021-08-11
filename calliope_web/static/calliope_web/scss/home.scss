@@ -19,6 +19,11 @@ $break-point-lg: 960px;
     }
 }
 
+@mixin border-check {
+    * {
+        border: 1pt dotted blue;
+    }
+}
 
 .welcome {
     position: relative;
@@ -65,28 +70,47 @@ $break-point-lg: 960px;
 
     .accordion {
 
+        // @include border-check();
+
         div {
-            display: flex;
-        }
-        
-        div, p {
             $font-img-height: 25px;
+
             width: 100%;
-            
-            font-size: $font-img-height;
             line-height: $font-img-height;
-            margin-bottom: 20px;
+            
+            &:nth-child(odd) {
+                font-size: $font-img-height;
+                margin-bottom: 25px;
+                display: flex;
+                img {
+                    height: $font-img-height;
+                    width: $font-img-height;
 
-            img {
-                height: $font-img-height;
-                width: $font-img-height;
-                margin-right: 4%;
-
-                &.toggle {
-                    margin-left: auto;
+                    &:not(.toggle) {
+                        margin-right: 3%;
+                    }
+    
+                    &.toggle {
+                        margin-left: auto;
+                    }
                 }
             }
+            
+            &:nth-child(even) {
+                margin-bottom: 30px;
 
+                ul {
+                    width: 90%;
+                    margin: 0 auto;
+
+                    padding: 0;
+                    list-style: none;
+                    li {
+                        margin: 20px 0;
+                        font-size: $font-img-height * 0.9;
+                    }
+                }
+            }
         }
     }
 }
