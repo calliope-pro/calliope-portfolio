@@ -8,15 +8,16 @@
 }
 
 .welcome .top-position-1 {
+  white-space: nowrap;
   position: absolute;
-  font-size: 30px;
+  font-size: 35px;
   color: #FFFFFF;
   background: -webkit-gradient(linear, right top, left top, from(#F77B78), to(#7DD3D2));
   background: linear-gradient(right, #F77B78, #7DD3D2);
   color: transparent;
   -webkit-background-clip: text;
   z-index: 10;
-  top: 25%;
+  top: 20%;
   left: 20%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -30,20 +31,21 @@
 
 @media (min-width: 960px) {
   .welcome .top-position-1 {
-    font-size: 80px;
+    font-size: 85px;
   }
 }
 
 .welcome .top-position-2 {
+  white-space: nowrap;
   position: absolute;
-  font-size: 30px;
+  font-size: 35px;
   color: #FFFFFF;
   background: -webkit-gradient(linear, right top, left top, from(#F77B78), to(#7DD3D2));
   background: linear-gradient(right, #F77B78, #7DD3D2);
   color: transparent;
   -webkit-background-clip: text;
   z-index: 10;
-  top: 50%;
+  top: 40%;
   left: 20%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -57,20 +59,21 @@
 
 @media (min-width: 960px) {
   .welcome .top-position-2 {
-    font-size: 80px;
+    font-size: 85px;
   }
 }
 
 .welcome .top-position-3 {
+  white-space: nowrap;
   position: absolute;
-  font-size: 30px;
+  font-size: 35px;
   color: #FFFFFF;
   background: -webkit-gradient(linear, right top, left top, from(#F77B78), to(#7DD3D2));
   background: linear-gradient(right, #F77B78, #7DD3D2);
   color: transparent;
   -webkit-background-clip: text;
   z-index: 10;
-  top: 75%;
+  top: 60%;
   left: 20%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -84,7 +87,35 @@
 
 @media (min-width: 960px) {
   .welcome .top-position-3 {
-    font-size: 80px;
+    font-size: 85px;
+  }
+}
+
+.welcome .top-position-4 {
+  white-space: nowrap;
+  position: absolute;
+  font-size: 35px;
+  color: #FFFFFF;
+  background: -webkit-gradient(linear, right top, left top, from(#F77B78), to(#7DD3D2));
+  background: linear-gradient(right, #F77B78, #7DD3D2);
+  color: transparent;
+  -webkit-background-clip: text;
+  z-index: 10;
+  top: 80%;
+  left: 20%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+@media (min-width: 520px) {
+  .welcome .top-position-4 {
+    font-size: 55px;
+  }
+}
+
+@media (min-width: 960px) {
+  .welcome .top-position-4 {
+    font-size: 85px;
   }
 }
 

@@ -28,14 +28,15 @@ $break-point-lg: 960px;
         height: auto;
     }
     
-    @for $top-position from 1 to 4 {
+    @for $top-position from 1 to 5 {
         .top-position-#{$top-position} {
+            white-space: nowrap;
             position: absolute;
-            font-size: 30px;
+            font-size: 35px;
             color: $color-2;
             @include text-grad($color-3, $color-5);
             z-index: 10;
-            top: 25%*$top-position;
+            top: 20%*$top-position;
             left: 20%;
             transform: translateY(-50%);
             
@@ -44,7 +45,7 @@ $break-point-lg: 960px;
             }
             
             @include media-q() {
-                font-size: 80px;
+                font-size: 85px;
             }
         }
     }
