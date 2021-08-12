@@ -42,4 +42,5 @@
     }
     accordion('lang-accordion', 'lang', 'detail');
 
+    
 })();
