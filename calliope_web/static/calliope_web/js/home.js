@@ -19,7 +19,7 @@
         const handleClick = (e) => {
             const targetVal = e.currentTarget.dataset[`${menuProp}`];
             const $content = $accordion.querySelector(`[${DATA_PROP_PREFIX}${contentProp}='${targetVal}']`);
-            
+
             $content.classList.toggle(ACTIVE_CLASS_NAME);
             if ($content.classList.contains(ACTIVE_CLASS_NAME)) {
                 $content.style.display = 'block';
@@ -43,4 +43,10 @@
     accordion('lang-accordion', 'lang', 'detail');
 
     
+    function scrollToTop() {
+        scrollTo(0, 0);
+    }
+    const $scrollButton = document.getElementById('scroll-to-top');
+    $scrollButton.addEventListener('click', scrollToTop)
+
 })();

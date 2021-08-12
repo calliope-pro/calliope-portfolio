@@ -16,7 +16,7 @@
     <h1 class="top-position-4">Portfolio!</h1>
   </section>
 
-  <section class='main container'>
+  <section class='container'>
     <h2 class="theme">
       Info
     </h2>
@@ -25,50 +25,39 @@
       Herokuというプラットフォームを用いてこのポートフォリオを稼働させております。
       ソースコードは<a href="https://github.com/calliope-pro/calliope-portfolio" target="_blank" rel="noopener noreferrer">GitHub</a>に載せてありますので、ぜひご覧ください。
     </p>
+  </section>
 
 
+  <section class="container">
     <h2 class="theme">
       Purpose
     </h2>
     <p>
-      私は普段バックエンドの開発を行っており、Webデザインは不得手であり、
-      このポートフォリオのデザインはCodePen及び、jQuery、Bootstrapのテンプレートを多く用いております。
-      <p>2021/08/10 追記</p>
-      <div>
-        フロントエンドに関しましても勉強しておりますので、ぜひ作品をご覧ください。
-        <ul>
-          <li><a href={% url 'calliope_front:work1' %} target="_blank">作品1</a></li>
-        </ul>
-      </div>
+      Webデザインや、JS等を用いたフロントエンド開発
       <br>
-      そのため、このポートフォリオでは、ログイン機能や問い合わせフォーム、API開発、LINEや決済サービスとのAPI連携などをご覧いただきたいと思っております。
+      ログイン機能や問い合わせフォーム、API開発、LINEや決済サービスとのAPI連携などをご覧いただきたいと思っております。
     </p>
+  </section>
 
 
+  <section class="container">
     <h2 class="theme">
       About
     </h2>
     <div>
-      <div>
-        <p>
-        都内の理系大学に通っており、学部2年になります。<br>
-        私の専攻は情報学系ではありませんが、専攻科目と並行しながら独学しております。<br>
-        Pythonをメインに扱ってプログラミングを行っております。<br>
-        私がPython(及びライブラリ)で行っていることを以下に挙げます。
-        </p>
-      </div>
-    </div>
-    <h2 class="theme">
-      Works
-    </h2>
-    <div>
       <p>
-        詳しい実績といたしまして、Pythonのオンライン指導、クラウドソーシングにてスクレイピング・API操作を行うexeファイル作成、また、htmlファイル等を預かりDjangoを用いてサーバーへのアップなどがあります。<br>
-        また、Excel VBAを用いた勤怠管理システム等の作成実績もあります。
+        都内の理系大学に通っており、学部2年になります。
+        <br>
+        私の専攻は情報学系ではありませんが、専攻科目と並行しながら独学しております。
+        <br>
+        Pythonをメインに扱ってプログラミングを行っております。
+        <br>
       </p>
     </div>
+  </section>
 
 
+  <section class="container">
     <h2 class="theme">
       Skills
     </h2>
@@ -143,8 +132,26 @@
         </ul>
       </div>
     </div>
+  </section>
 
 
+  <section class="container">
+    <h2 class="theme">
+      Works
+    </h2>
+    <div>
+      <ul>
+        <li><a href={% url 'calliope_front:work1' %} target="_blank">作品1</a></li>
+      </ul>
+      <p>
+        詳しい実績といたしまして、Pythonのオンライン指導、クラウドソーシングにてスクレイピング・API操作を行うexeファイル作成、また、htmlファイル等を預かりDjangoを用いてサーバーへのアップなどがあります。<br>
+        また、Excel VBAを用いた勤怠管理システム等の作成実績もあります。
+      </p>
+    </div>
+  </section>
+
+
+  <section class="container">
     <h2 class="theme">
       Next Stage
     </h2>
@@ -157,8 +164,10 @@
         <li>Dart, Flutterを用いたNative applicationの開発</li>
       </ul>
     </div>
+  </section>
 
 
+  <section class="container">
     <h2 class="theme">
       More
     </h2>
@@ -171,6 +180,8 @@
     </div>
     <br>
   </section>
+
+  <img class="scroll-to-top" id="scroll-to-top" src="{% static 'calliope_web/images/toggle_left_arrow.png' %}" alt="scroll to top">上</img>
 
   <script src={% static 'calliope_web/js/home.js' %}></script>
 {% endblock body %}
