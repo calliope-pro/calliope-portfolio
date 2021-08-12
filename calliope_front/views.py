@@ -6,4 +6,5 @@ from django.views.generic import (
 class FrontWorkOneView(TemplateView):
     template_name = "calliope_front/work1.html"
 
-# Create your views here.
+class FrontWorkTwoView(TemplateView):
+    template_name = 'calliope_front/index.html'
