@@ -1,29 +1,14 @@
 {% load static %}
-<link rel="stylesheet" href={% static 'css/_navbar.css' %}>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'css/_navbar.css' %}">
 
-<nav class="navbar navbar-expand-sm navbar-dark sticky-top" style="background-color: rgba(36, 167, 167, 0.743); font-family: 'Kosugi Maru', sans-serif;">
-	<div class="container-fluid px-4 py-2">
-		<a class="navbar-brand" href="{% url 'calliope_web:home' %}"><h1>Portfolio</h1></a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+<nav class='navbar'>
+  <h1 class='banner'><a href={% url 'calliope_web:home' %}>Calliope Portfolio</a></h1>
 
-      <div class="gap-2 ">
-        <a href="{% url 'calliope_auth:logout' %}"><button type="button" class="btn btn-danger text-nowrap">ログアウト</button></a>
-      </div>
-
-			<hr>
-			<center>
-				<div class="navbar-nav">
-					<a class="nav-link " aria-current="page" href="{% url 'calliope_web:home' %}"><h5>ホーム</h5></a>
-					<a class="nav-link" aria-current="page" href="{% url 'calliope_web:profile' %}"><h5>マイページ</h5></a>
-					<a class="nav-link " aria-current="page" href="{% url 'calliope_web:bss_list' %}"><h5>カイッター</h5></a>
-					<a class="nav-link " aria-current="page" href="{% url 'calliope_web:contact' %}"><h5>問い合わせ</h5></a>
-				</div>
-			</center>
-		</div>
-	</div>
+  <ul>
+    <li><a class='logout' href={% url 'calliope_auth:logout' %}>Logout</a></li>
+    <li><a href={% url 'calliope_web:home' %}>Home</a></li>
+    <li><a href={% url 'calliope_web:profile' %}>My Page</a></li>
+    <li><a href={% url 'calliope_web:bss_list' %}>Caitter</a></li>
+    <li><a href={% url 'calliope_web:contact' %}>Contact</a></li>
+  </ul>
 </nav>

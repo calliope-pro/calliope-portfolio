@@ -32,7 +32,7 @@ try:
 except ImportError:
     DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -46,11 +46,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+
     'cloudinary',
     'cloudinary_storage',
     'rest_framework',
     'rest_framework.authtoken',
     'widget_tweaks',
+    'corsheaders',
+    # 'sass'
+
     'calliope_web.apps.CalliopeWebConfig',
     'calliope_bot.apps.CalliopeBotConfig',
     'calliope_auth.apps.CalliopeAuthConfig',
@@ -61,6 +65,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -199,3 +204,11 @@ SITE_ID = 1
 LINE_REDIRECT_URL = os.environ['LINE_REDIRECT_URL']
 LINE_CHANNEL_ID = os.environ['LINE_CHANNEL_ID']
 LINE_CHANNEL_SECRET = os.environ['LINE_CHANNEL_SECRET']
+
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:3000',
+#     'http://localhost:8000',
+#     'http://127.0.0.1:3000',
+#     'http://127.0.0.1:8000',
+# ]
+CORS_ORIGIN_ALLOW_ALL = True

@@ -1,3 +1,4 @@
+from os import read
 from calliope_web.models import Bss, CustomUser
 from rest_framework import serializers
 
@@ -11,3 +12,4 @@ class BssSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bss
         fields = ('author', 'body', 'created_at', 'updated_at')
+        read_only_fields = ('created_at', 'updated_at')

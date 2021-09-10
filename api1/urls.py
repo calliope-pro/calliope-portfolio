@@ -1,5 +1,4 @@
-from django.urls.conf import include, path
-from rest_framework import routers
+from django.urls.conf import path
 from . import views
 
 app_name = 'api1'

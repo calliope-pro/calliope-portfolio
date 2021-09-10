@@ -1,28 +1,20 @@
-$color-1: #777777;
-$color-2: #FFFFFF;
-$color-3: #F77B78;
-$color-4: #A6927C;
-$color-5: #7DD3D2;
+@use "../../../../static/css/global.scss" as global;
 
-$break-point-sm: 520px;
-$break-point-lg: 960px;
+$color-1: global.$color-1;
+$color-2: global.$color-2;
+$color-3: global.$color-3;
+$color-4: global.$color-4;
+$color-5: global.$color-5;
+$color-6: global.$color-6;
+
+$break-point-sm: global.$break-point-sm;
+$break-point-lg: global.$break-point-lg;
+
 
 @mixin text-grad($color-start, $color-end) {
     background: linear-gradient(right, $color-start, $color-end);
     color: transparent;
     -webkit-background-clip: text;
-}
-
-@mixin media-q($break-point: $break-point-lg) {
-    @media (min-width: $break-point) {
-        @content;
-    }
-}
-
-@mixin border-check {
-    * {
-        border: 1pt dotted blue;
-    }
 }
 
 .welcome {
@@ -45,11 +37,11 @@ $break-point-lg: 960px;
             left: 20%;
             transform: translateY(-50%);
             
-            @include media-q($break-point-sm) {
+            @include global.media-q($break-point-sm) {
                 font-size: 55px;
             }
             
-            @include media-q() {
+            @include global.media-q() {
                 font-size: 85px;
             }
         }
@@ -129,7 +121,7 @@ $break-point-lg: 960px;
         opacity: 0.9;
     }
     
-    @include media-q($break-point-lg) {
+    @include global.media-q($break-point-lg) {
         width: 80px;
         height: 80px;
     }

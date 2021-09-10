@@ -12,7 +12,6 @@ section {
   margin: 0 10%;
   margin-top: 100px;
 }
-
 section div.theme {
   display: block;
   margin: 0 auto;
@@ -21,41 +20,33 @@ section div.theme {
   font-size: xx-large;
   font-weight: 600;
 }
-
 section.About {
   width: 80%;
   display: inline-block;
   margin: 0 auto;
 }
-
 section.About div.content {
   font-size: larger;
 }
-
 section.About p.author {
   margin-bottom: 30px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: larger;
 }
-
 section.About p.address {
   margin-bottom: 25px;
 }
-
 section.About span.prefix {
   text-align: right;
   display: inline-block;
   width: 50px;
 }
-
 section.About p.description {
   margin-top: 25px;
 }
-
 section.About span.info {
   margin-left: 8px;
 }
-
 section.Works div.image-works {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -68,12 +59,10 @@ section.Works div.image-works {
       flex-wrap: wrap;
   justify-items: center;
 }
-
 section.Works img {
   width: 28%;
   margin: 2%;
 }
-
 section.News div.news-list {
   height: 80px;
   margin-bottom: 20px;
@@ -85,23 +74,19 @@ section.News div.news-list {
       -ms-flex-pack: center;
           justify-content: center;
 }
-
 section.News div.news-list div {
   font-size: 21px;
   display: inline-block;
 }
-
 section.News div.news-date {
   margin-right: 20px;
 }
-
 section.Contact form.contact-form {
   text-align: right;
   width: 100%;
   font-size: x-large;
   font-style: italic;
 }
-
 section.Contact form.contact-form div:not(.theme) {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -115,14 +100,12 @@ section.Contact form.contact-form div:not(.theme) {
   -ms-flex-line-pack: justify;
       align-content: space-between;
 }
-
 section.Contact form.contact-form div:not(.theme) span {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
   margin-right: 3%;
 }
-
 section.Contact form.contact-form div:not(.theme) span + * {
   -webkit-box-flex: 3;
       -ms-flex: 3;
@@ -130,12 +113,10 @@ section.Contact form.contact-form div:not(.theme) span + * {
   border-radius: 10px;
   border-color: #1F191C;
 }
-
 section.Contact form.contact-form textarea {
   height: 150px;
   resize: vertical;
 }
-
 section.Contact form.contact-form button {
   display: block;
   margin: 10px auto;
@@ -146,9 +127,7 @@ section.Contact form.contact-form button {
   background-color: #9FAC8F;
   border-radius: 10px;
 }
-
 section.Contact form.contact-form button:hover {
   -webkit-box-shadow: 0 10px 25px 5px #9FAC8F;
           box-shadow: 0 10px 25px 5px #9FAC8F;
-}
-/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */
