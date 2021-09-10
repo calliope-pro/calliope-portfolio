@@ -16,7 +16,7 @@
     <h1 class="top-position-4">Portfolio!</h1>
   </section>
 
-  <section class='container'>
+  <section class='container_section'>
     <h2 class="theme">
       Info
     </h2>
@@ -24,23 +24,12 @@
       Instagramなどにも使用されているPythonのWeb開発フレームワークであるDjangoを用いてこのポートフォリオを作成いたしました。
       Herokuというプラットフォームを用いてこのポートフォリオを稼働させております。
       ソースコードは<a href="https://github.com/calliope-pro/calliope-portfolio" target="_blank" rel="noopener noreferrer">GitHub</a>に載せてありますので、ぜひご覧ください。
-    </p>
-  </section>
-
-
-  <section class="container">
-    <h2 class="theme">
-      Purpose
-    </h2>
-    <p>
       Webデザインや、JS等を用いたフロントエンド開発
-      <br>
       ログイン機能や問い合わせフォーム、API開発、LINEや決済サービスとのAPI連携などをご覧いただきたいと思っております。
     </p>
   </section>
 
-
-  <section class="container">
+  <section class="container_section">
     <h2 class="theme">
       About
     </h2>
@@ -57,7 +46,7 @@
   </section>
 
 
-  <section class="container">
+  <section class="container_section">
     <h2 class="theme">
       Skills
     </h2>
@@ -69,18 +58,19 @@
       </div>
       <div data-detail="python">
         <ul>
-          <li>Beautifulsoupを用いたスクレイピング</li>
-          <li>requestsを用いたAPI操作</li>
-          <li>seleniumを用いたブラウザの自動操作</li>
+          <li>Requestsを用いたAPI操作</li>
+          <li>Beautifulsoupを用いたhtml解析・スクレイピング</li>
+          <li>Seleniumを用いたブラウザの自動操作</li>
           <li>emailの自動送信</li>
-          <li>Excelやtxtファイルに対する操作</li>
-          <li>ツールのGUI化およびexeファイルの作成</li>
+          <li>OpenpyxlによるExcel操作</li>
+          <li>txtファイル等のファイル操作</li>
+          <li>GUI化およびexeファイルの作成</li>
           <li>AtCoderにおける競技プログラミング(現Rate:{{ atcoder_rate }}, <a href="https://atcoder.jp/users/calliope">詳細はこちら)</a></li>
-          <li>sympyなどを用いた数理計算</li>
-          <li>numpyやpandasを用いたデータ分析</li>
-          <li>sklearnを用いた機械学習</li>
-          <li>Djangoを用いたWebアプリケーション制作</li>
-          <li>Django Rest FrameWorkを用いたAPI開発</li>
+          <li>Sympy, Scipyなどを用いた数理計算</li>
+          <li>Numpy, Pandasを用いたデータ分析</li>
+          <li>Sklearnを用いた機械学習</li>
+          <li>Django, Flask, FastAPIを用いたWebアプリケーション制作</li>
+          <li>Wagtailを用いたCMS制作</li>
         </ul>
       </div>
 
@@ -91,10 +81,10 @@
       </div>
       <div data-detail="javascript">
         <ul>
-          <li>jQuery</li>
-          <li>TypeScript</li>
-          <li>React.js</li>
-          <li>Next.js</li>
+          <li>jQueryを用いたクラシカルな開発</li>
+          <li>React.jsを用いたSPAの開発</li>
+          <li>Next.jsを用いたSSR, SSG, ISRの開発</li>
+          <li>TypeScriptを用いた保守性の高い開発</li>
         </ul>
       </div>
 
@@ -105,7 +95,7 @@
       </div>
       <div data-detail="html">
         <ul>
-          <li>HTML5</li>
+          <li>HTML5を用いた開発</li>
         </ul>
       </div>
 
@@ -116,26 +106,27 @@
       </div>
       <div data-detail="css">
         <ul>
-          <li>CSS3</li>
-          <li>Sass・Scss</li>
+          <li>CSS3を用いた開発</li>
+          <li>Sass・Scssを用いた開発</li>
+          <li>Bootstarpなどのフレームワークを用いた開発</li>
         </ul>
       </div>
 
-      <div data-lang="vba">
-        <img src="https://img.icons8.com/color/48/000000/ms-excel.png" alt="VBA">
-        <span>Excel VBA</span>
+      <div data-lang="php">
+        <img src="{% static 'calliope_web/images/php_logo_icon.svg' %}" alt="PHP">
+        <span>PHP</span>
         <img class="toggle" src="{% static 'calliope_web/images/toggle_left_arrow.png' %}" alt="toggle">
       </div>
-      <div data-detail="vba">
+      <div data-detail="php">
         <ul>
-          <li>Excel VBA</li>
+          <li>Wordpressを用いたWebサイト制作</li>
         </ul>
       </div>
     </div>
   </section>
 
 
-  <section class="container">
+  <section class="container_section">
     <h2 class="theme">
       Works
     </h2>
@@ -152,9 +143,9 @@
   </section>
 
 
-  <section class="container">
+  <section class="container_section">
     <h2 class="theme">
-      Next Stage
+      Next
     </h2>
     <div>
       <ul>
@@ -168,7 +159,7 @@
   </section>
 
 
-  <section class="container">
+  <section class="container_section">
     <h2 class="theme">
       More
     </h2>
@@ -182,7 +173,7 @@
     <br>
   </section>
 
-  <img class="scroll-to-top" id="scroll-to-top" src="{% static 'calliope_web/images/toggle_left_arrow.png' %}" alt="scroll to top">上</img>
+  <img class="scroll-to-top" id="scroll-to-top" src="{% static 'calliope_web/images/toggle_left_arrow.png' %}" alt="scroll to top"></img>
 
   <script src={% static 'calliope_web/js/home.js' %}></script>
 {% endblock body %}
