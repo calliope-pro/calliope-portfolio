@@ -13,7 +13,8 @@ $break-point-lg: global.$break-point-lg;
 
 .navbar {
     height: 110px;
-    position: fixed;
+    position: sticky;
+    top: 0;
     width: 100%;
     z-index: 20;
     opacity: 0.9;
@@ -33,12 +34,11 @@ $break-point-lg: global.$break-point-lg;
     }
 
     ul {
-        align-self: flex-end;
+        align-self: center;
         padding: 0;
         margin-right: 3%;
         list-style: none;
         display: flex;
-        align-items: center;
 
         li {
             width: 150%;
