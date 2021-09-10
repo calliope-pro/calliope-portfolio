@@ -19,7 +19,7 @@ $break-point-lg: global.$break-point-lg;
 
 body section {
     font-size: 25px;
-    color: $color-2;
+    // color: $color-2;
 }
 
 .welcome {
@@ -57,7 +57,7 @@ body section {
     width: 100%;
     padding: 2%;
     margin: 0 auto;
-    background-color: $color-6;
+    background-color: $color-2;
     overflow: hidden;
     margin-left: -100%;
     transition: 0.4s;
@@ -69,7 +69,7 @@ body section {
     .theme {
         padding-top: 50px;
         margin-bottom: 35px;
-        color: $color-5;
+        color: $color-1;
         font-size: 60px;
         text-align: center;
     }
