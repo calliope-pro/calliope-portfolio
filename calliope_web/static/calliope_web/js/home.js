@@ -1,7 +1,6 @@
 (function () {
-    const ACTIVE_CLASS_NAME = 'is-active';
-
     function accordion(id, menuProp, contentProp) {
+        const ACTIVE_CLASS_NAME = 'is-active';
         const DATA_PROP_PREFIX = 'data-';
 
         const $accordion = document.getElementById(id);
@@ -10,7 +9,6 @@
 
         function init() {
             $contentList.forEach((element) => {
-                console.log(element);
                 element.style.display = 'none';
             });
         }
@@ -42,11 +40,23 @@
     }
     accordion('lang-accordion', 'lang', 'detail');
 
-    
+
     function scrollToTop() {
         scrollTo(0, 0);
     }
     const $scrollButton = document.getElementById('scroll-to-top');
     $scrollButton.addEventListener('click', scrollToTop)
+
+    function slide_section_from_left() {
+        const $sections = document.querySelectorAll('section.container_section');
+        console.log($sections);
+        $sections.forEach((element) => {
+            if(window.innerHeight > element.getBoundingClientRect().top + 200) {
+                element.classList.add('is-show');
+            }
+        })
+    }
+    window.addEventListener('scroll', () => slide_section_from_left());
+
 
 })();
