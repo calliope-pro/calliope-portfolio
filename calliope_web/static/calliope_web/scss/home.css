@@ -1,3 +1,8 @@
+body section {
+  font-size: 25px;
+  color: #f4f4f4;
+}
+
 .welcome {
   position: relative;
 }
@@ -106,50 +111,59 @@
   }
 }
 
-.container {
+.container_section {
   width: 100%;
+  padding: 2%;
   margin: 0 auto;
+  background-color: #08182b;
+  overflow: hidden;
+  margin-left: -100%;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
-.container .theme {
-  margin-top: 50px;
+.container_section.is-show {
+  margin-left: 0;
+}
+.container_section .theme {
+  padding-top: 50px;
   margin-bottom: 35px;
-  color: #777777;
-  font-size: 50px;
+  color: #45d9fd;
+  font-size: 60px;
   text-align: center;
 }
-.container .accordion div {
+.container_section .accordion div {
   width: 100%;
-  line-height: 25px;
+  line-height: 30px;
 }
-.container .accordion div:nth-child(odd) {
-  font-size: 25px;
+.container_section .accordion div:nth-child(odd) {
+  font-size: 30px;
   margin-bottom: 25px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.container .accordion div:nth-child(odd) img {
-  height: 25px;
-  width: 25px;
+.container_section .accordion div:nth-child(odd) img {
+  height: 30px;
+  width: 30px;
 }
-.container .accordion div:nth-child(odd) img:not(.toggle) {
+.container_section .accordion div:nth-child(odd) img:not(.toggle) {
   margin-right: 3%;
 }
-.container .accordion div:nth-child(odd) img.toggle {
+.container_section .accordion div:nth-child(odd) img.toggle {
   margin-left: auto;
 }
-.container .accordion div:nth-child(even) {
+.container_section .accordion div:nth-child(even) {
   margin-bottom: 30px;
 }
-.container .accordion div:nth-child(even) ul {
+.container_section .accordion div:nth-child(even) ul {
   width: 90%;
   margin: 0 auto;
   padding: 0;
   list-style: none;
 }
-.container .accordion div:nth-child(even) ul li {
+.container_section .accordion div:nth-child(even) ul li {
   margin: 20px 0;
-  font-size: 22.5px;
+  font-size: 27px;
 }
 
 .scroll-to-top {

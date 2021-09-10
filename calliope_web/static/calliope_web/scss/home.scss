@@ -17,9 +17,14 @@ $break-point-lg: global.$break-point-lg;
     -webkit-background-clip: text;
 }
 
+body section {
+    font-size: 25px;
+    color: $color-2;
+}
+
 .welcome {
     position: relative;
-
+    
     img {
         width: 100%;
         height: auto;
@@ -48,22 +53,31 @@ $break-point-lg: global.$break-point-lg;
     }
 }
 
-.container {
+.container_section {
     width: 100%;
+    padding: 2%;
     margin: 0 auto;
+    background-color: $color-6;
+    overflow: hidden;
+    margin-left: -100%;
+    transition: 0.4s;
+
+    &.is-show{
+        margin-left: 0;
+    }
     
     .theme {
-        margin-top: 50px;
+        padding-top: 50px;
         margin-bottom: 35px;
-        color: $color-1;
-        font-size: 50px;
+        color: $color-5;
+        font-size: 60px;
         text-align: center;
     }
 
     .accordion {
 
         div {
-            $font-img-height: 25px;
+            $font-img-height: 30px;
 
             width: 100%;
             line-height: $font-img-height;
