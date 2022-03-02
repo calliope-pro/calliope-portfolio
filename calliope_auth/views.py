@@ -1,10 +1,9 @@
-from calliope_bot.models import LineProfile
 import re
 
+from calliope_bot.models import LineProfile
 from django.conf import settings
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.views import LoginView, LogoutView
-from django.core.mail import send_mail
 from django.core.signing import BadSignature, SignatureExpired, dumps, loads
 from django.http.response import HttpResponseBadRequest
 from django.shortcuts import redirect, render
@@ -14,6 +13,7 @@ from django.views.generic import CreateView, TemplateView
 from django.views.generic.base import View
 
 from .forms import UserCreateForm
+
 
 # Create your views here.
 class LoginWebView(LoginView):
