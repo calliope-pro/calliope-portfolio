@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": "C:\\Users\\calli\\.virtualenvs\\calliope-portfolio-5UfMR2fC\\Scripts\\python.exe",
+    "python.linting.enabled":true,
+    "editor.defaultFormatter": null,
+    "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--skip-string-normalization",
+        "--line-length=79"
+    ]
+}
