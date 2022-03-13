@@ -1,0 +1,42 @@
+name: main
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  collect-static:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      
+      - name: Install pipenv
+        run: pipx install pipenv
+
+      - name: Setup Python 3.8.8
+        uses: actions/setup-python@v3.0.0
+        with:
+          # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+          python-version: 3.8.8
+          # Used to specify a package manager for caching in the default directory. Supported values: pip, pipenv.
+          cache: pipenv
+          # The target architecture (x86, x64) of the Python interpreter.
+          architecture: x64
+          # Used to pull python distributions from actions/python-versions. Since there's a default, this is typically not supplied by the user.
+
+      - name: Install Liblaries
+        run: pipenv install
+
+      - name: Generate time info
+        run: pipenv run cs
+
+      - name: Push time info
+        # コミット・プッシュを行ってくれる
+        uses: stefanzweifel/git-auto-commit-action@v4.13.1
+        with:
+          # Commit message
+          commit_message: collect-static(auto)
