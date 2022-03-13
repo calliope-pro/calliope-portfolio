@@ -1,50 +1,43 @@
+{% extends '_plain.html' %}
 {% load static %}
 {% load widget_tweaks %}
 
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href={% static 'calliope_auth/css/login.css' %}>
-    <title>ログイン</title>
-  </head>
+{% block head %}
+  <link rel="stylesheet" href={% static 'calliope_auth/css/login.css' %}>
+  <title>ログイン</title>
+{% endblock head %}
 
-  <body>
-    <div class="container">
-      <div class="frm">
-        <form method="post">
-          <div class="alert alert-success text-center w-75" role="alert">
-            説明は<a href="{% url 'calliope_auth:auth_docs' %}">こちら</a>
-            <br>
-            <hr>
-            テストユーザーは<a href="{% url 'calliope_auth:login_testuser' %}">こちら</a>から
-          </div>
-          {% for error in form.non_field_errors %}
-            <div class="alert alert-danger alert-dismissible" role="alert">
-              {{ error }}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-          {% endfor %}
-
-          {% for error in form.username.errors %}
-            <div class="alert alert-danger alert-dismissible" role="alert">
-              {{ error }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-          {% endfor %}
-
-          {% csrf_token %}
-          {% render_field form.username placeholder="Enter your username..." %}
-          {% render_field form.password placeholder="Enter your password..." %}
-          <button class="login-btn btn" type="submit">ログイン</button>
-        </form>
-        <form method="get" action="{% url 'calliope_auth:signup' %}">
-          <button class="login-btn btn">サインアップ</button>
-        </form>
+{% block body %}
+  <div class="container mt-5">
+    <form class="row justify-content-center" method="post">
+      <div class="col-8 alert alert-success text-center" role="alert">
+        説明は<a href="{% url 'calliope_auth:auth_docs' %}">こちら</a>
       </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  </body>
-</html>
+      <div class="col-8 alert alert-success text-center" role="alert">
+        <a href="{% url 'calliope_auth:login_testuser' %}">テストユーザーとしてログイン</a>
+      </div>
+
+      {% for error in form.non_field_errors %}
+        <div class="col-8 alert alert-danger alert-dismissible text-center" role="alert">
+          {{ error }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+
+      {% for error in form.username.errors %}
+        <div class="col-8 alert alert-danger alert-dismissible text-center" role="alert">
+          {{ error }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+
+      {% csrf_token %}
+
+      {% render_field form.username class="col-8 p-3 mb-1" placeholder="Enter your username..." %}
+      {% render_field form.password class="col-8 p-3" placeholder="Enter your password..." %}
+
+      <button class="login-btn btn rounded mt-4 col-8" type="submit">ログイン</button>
+      <a class="login-btn btn rounded mt-4 col-8" href="{% url 'calliope_auth:signup' %}">サインアップ</a>
+    </form>
+  </div>
+{% endblock body %}
