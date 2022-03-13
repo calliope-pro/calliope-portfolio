@@ -1,0 +1,63 @@
+name: main
+
+env:
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+
+  EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
+  EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
+
+  LINE_REDIRECT_URL: ${{ secrets.LINE_REDIRECT_URL }}
+  LINE_CHANNEL_ID: ${{ secrets.LINE_CHANNEL_ID }}
+  LINE_CHANNEL_SECRET: ${{ secrets.LINE_CHANNEL_SECRET }}
+
+  LINE_BOT_CHANNEL_SECRET: ${{ secrets.LINE_BOT_CHANNEL_SECRET }}
+  LINE_BOT_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_BOT_CHANNEL_ACCESS_TOKEN }}
+
+  CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+  CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+  CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+
+  PUBLIC_KEY_PAYJP: ${{ secrets.PUBLIC_KEY_PAYJP }}
+  PRIVATE_KEY_PAYJP: ${{ secrets.PRIVATE_KEY_PAYJP }}
+
+  SUPERUSER_USERNAME: ${{ secrets.SUPERUSER_USERNAME }}
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  collect-static:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    environment: calliope-sample-portfolio
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      
+      - name: Install pipenv
+        run: pipx install pipenv
+
+      - name: Setup Python 3.8.8
+        uses: actions/setup-python@v3.0.0
+        with:
+          # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+          python-version: 3.8.8
+          # The target architecture (x86, x64) of the Python interpreter.
+          architecture: x64
+          # Used to pull python distributions from actions/python-versions. Since there's a default, this is typically not supplied by the user.
+
+      - name: Install Liblaries
+        run: pipenv install
+
+      - name: run collectstatic --noinput
+        run: pipenv run cs --noinput
+
+      - name: Push collectstatic
+        # コミット・プッシュを行ってくれる
+        uses: stefanzweifel/git-auto-commit-action@v4.13.1
+        with:
+          # Commit message
+          commit_message: collect-static(auto)
