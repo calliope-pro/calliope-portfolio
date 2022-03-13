@@ -13,8 +13,15 @@ from django.db.models import Q
 from django.http.response import HttpResponseBadRequest
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import (CreateView, DetailView, FormView, ListView,
-                                  TemplateView, UpdateView, View)
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    FormView,
+    ListView,
+    TemplateView,
+    UpdateView,
+    View,
+)
 from django.views.generic.edit import DeleteView
 from payjp.error import PayjpException
 
@@ -25,17 +32,19 @@ from .models import Bss
 class HomeView(TemplateView):
     template_name = "calliope_web/home.html"
     atcoder_rate = -1
-    
+
     def get_atcoder_rate(self):
         """
         自作(Atcoderのレート取得)
         """
         response = requests.get('https://atcoder.jp/users/calliope')
         soup = BeautifulSoup(response.content, features='html5lib')
-        atcoder_rate_string = soup.select_one('#main-container > div.row > div.col-md-9.col-sm-12 > table > tbody > tr:nth-child(2) > td > span').decode_contents()
+        atcoder_rate_string = soup.select_one(
+            '#main-container > div.row > div.col-md-9.col-sm-12 > table > tbody > tr:nth-child(2) > td > span'
+        ).decode_contents()
 
         self.atcoder_rate = int(atcoder_rate_string)
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         self.get_atcoder_rate()
@@ -46,20 +55,30 @@ class HomeView(TemplateView):
 class ContactView(FormView):
     template_name = 'calliope_web/contact.html'
     form_class = ContactForm
-    
+
     def get_success_url(self):
         return reverse('calliope_web:contact')
-    
+
     def get_initial(self):
-        return {'username':self.request.user.username}
-    
+        return {'username': self.request.user.username}
+
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid():
-            title = f"{form.cleaned_data['title']}-by-{self.request.user.username}"
+            title = (
+                f"{form.cleaned_data['title']}-by-{self.request.user.username}"
+            )
             body = f"{form.cleaned_data['body']}"
-            recipient_list = [form.cleaned_data['email'], settings.EMAIL_HOST_USER]
-            send_mail(subject=title, message=body, from_email=settings.EMAIL_HOST_USER, recipient_list=recipient_list)
+            recipient_list = [
+                form.cleaned_data['email'],
+                settings.EMAIL_HOST_USER,
+            ]
+            send_mail(
+                subject=title,
+                message=body,
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=recipient_list,
+            )
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
@@ -82,7 +101,9 @@ class ProfileView(TemplateView):
         context['random_state'] = self.LINE_RANDOM_STATE
         context['nonce'] = self.LINE_NONCE
         self.request.session['nonce'] = self.LINE_NONCE
-        lineprofile, _ = LineProfile.objects.get_or_create(user=self.request.user)
+        lineprofile, _ = LineProfile.objects.get_or_create(
+            user=self.request.user
+        )
         if lineprofile.line_id:
             context['lineprofile'] = lineprofile
         else:
@@ -101,18 +122,21 @@ class LineLinkView(View):
             "code": request_code,
             "redirect_uri": LINE_REDIRECT_URL,
             "client_id": LINE_CHANNEL_ID,
-            "client_secret": LINE_CHANNEL_SECRET
+            "client_secret": LINE_CHANNEL_SECRET,
         }
 
-        response_post = requests.post(self.URI_ACCESS_TOKEN, headers=self.HEADERS, data=data_params)
+        response_post = requests.post(
+            self.URI_ACCESS_TOKEN, headers=self.HEADERS, data=data_params
+        )
 
         json_loads = response_post.json()
         line_id_token = json_loads["id_token"]
-        line_profile = jwt.decode(line_id_token,
-                                LINE_CHANNEL_SECRET,
-                                audience=LINE_CHANNEL_ID,
-                                issuer='https://access.line.me',
-                                algorithms=['HS256']
+        line_profile = jwt.decode(
+            line_id_token,
+            LINE_CHANNEL_SECRET,
+            audience=LINE_CHANNEL_ID,
+            issuer='https://access.line.me',
+            algorithms=['HS256'],
         )
 
         if request.session.pop('nonce') != line_profile.get('nonce'):
@@ -130,12 +154,12 @@ class LineLinkView(View):
 
 class SupportView(TemplateView):
     template_name = 'calliope_web/support.html'
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['public_key'] = os.environ['PUBLIC_KEY_PAYJP']
         return context
-    
+
     def post(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
         try:
@@ -159,10 +183,9 @@ class SupportView(TemplateView):
 class BssCreateView(CreateView):
     model = Bss
     template_name = "calliope_web/bss_create.html"
-    context_object_name = 'form'
     success_url = reverse_lazy('calliope_web:bss_list')
     form_class = BssForm
-    
+
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         form.instance.author = request.user
@@ -181,7 +204,9 @@ class BssListView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('query')
         if query:
-            queryset = Bss.objects.filter(Q(author__username__icontains=query) | Q(body__icontains=query))
+            queryset = self.model.objects.filter(
+                Q(author__username__icontains=query) | Q(body__icontains=query)
+            )
         else:
             queryset = self.model.objects.all()
         if self.ordering:
@@ -205,7 +230,12 @@ class BssUpdateView(UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         user = self.request.user
-        return user == self.model.objects.select_related('author').get(pk=self.kwargs['pk']).author
+        return (
+            user
+            == self.model.objects.select_related('author')
+            .get(pk=self.kwargs['pk'])
+            .author
+        )
 
 
 class BssDeleteView(UserPassesTestMixin, DeleteView):
@@ -219,6 +249,9 @@ class BssDeleteView(UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         user = self.request.user
-        return user == self.model.objects.select_related('author').get(pk=self.kwargs['pk']).author
-
-
+        return (
+            user
+            == self.model.objects.select_related('author')
+            .get(pk=self.kwargs['pk'])
+            .author
+        )
