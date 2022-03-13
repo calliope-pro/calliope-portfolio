@@ -1,5 +1,8 @@
 name: main
 
+env:
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+
 on:
   push:
   workflow_dispatch:
