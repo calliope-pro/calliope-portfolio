@@ -1,0 +1,162 @@
+$bg-color: #d4e2be38;
+$hr-color: #DFB86F;
+$black-like-color: #1F191C;
+$btn-color: #9FAC8F;
+
+@mixin align-center ($display: inline-block) {
+    display: $display;
+    margin: 0 auto;
+}
+
+@mixin pd-mg-0 {
+    margin: 0;
+    padding: 0;
+}
+
+@mixin round($px: 10px) {
+    border-radius: $px;
+}
+
+
+body {
+    margin: 0 5px;
+    background-color: $bg-color;
+}
+
+p {
+    @include pd-mg-0;
+}
+
+section {
+    margin: 0 10%;
+    margin-top: 100px;
+
+    div.theme {
+        @include align-center(block);
+        margin-bottom: 35px;
+        text-align: center;
+        font-size: xx-large;
+        font-weight: 600;
+    }
+
+    &.About {
+        width: 80%;
+        @include align-center();
+
+        div.content {
+            font-size: larger;
+        }
+
+        p.author {
+            margin-bottom: 30px;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: larger;
+        }
+
+        p.address {
+            margin-bottom: 25px;
+        }
+
+        span.prefix {
+            text-align:right;
+            display: inline-block;
+            width: 50px;
+        }
+
+        p.description {
+            margin-top: 25px;
+        }
+
+        span.info {
+            margin-left: 8px;
+        }
+    }
+
+    &.Works {
+        div.image-works {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-items: center;
+        }
+
+        img {
+            width: 28%;
+            margin: 2%;
+        }
+    }
+
+    &.News {
+        div.news-list {
+            height: 80px;
+            margin-bottom: 20px;
+            border-bottom: 5px solid $hr-color;
+            display: flex;
+            justify-content: center;
+        }
+
+        div.news-list div {
+            font-size: 21px;
+            display: inline-block;
+        }
+
+        div.news-date {
+            margin-right: 20px;
+        }
+    }
+
+    &.Contact {
+        form.contact-form {
+            text-align: right;
+            width: 100%;
+            font-size: x-large;
+            font-style: italic;
+
+            div:not(.theme){
+                display: flex;
+                width: 80%;
+                height: 100%;
+                margin: 3% auto;
+                justify-content: space-between;
+                align-content: space-between;
+
+                span {
+                    flex: 1;
+                    margin-right: 3%;
+
+                    & + * {
+                        flex: 3;
+                        @include round();
+                        border-color: $black-like-color;
+                    }
+                }
+            }
+            textarea {
+                height: 150px;
+                resize: vertical;
+            }
+    
+            button {
+                display: block;
+                margin: 10px auto;
+                width: 20%;
+                height: 60px;
+                color: $black-like-color;
+                font-size: x-large;
+                background-color: $btn-color;
+                @include round();
+
+                &:hover {
+                    box-shadow: 0 10px 25px 5px $btn-color;
+                }
+            }
+        }
+
+
+
+    }
+}
+
+
+
+

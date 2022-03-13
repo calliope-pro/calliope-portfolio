@@ -1,0 +1,191 @@
+body section {
+  font-size: 25px;
+}
+
+.welcome {
+  position: relative;
+}
+.welcome img {
+  width: 100%;
+  height: auto;
+}
+.welcome .top-position-1 {
+  white-space: nowrap;
+  position: absolute;
+  font-size: 35px;
+  color: #f4f4f4;
+  background: -webkit-gradient(linear, right top, left top, from(#ee2560), to(#45d9fd));
+  background: linear-gradient(right, #ee2560, #45d9fd);
+  color: transparent;
+  -webkit-background-clip: text;
+  z-index: 10;
+  top: 20%;
+  left: 20%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+@media (min-width: 520px) {
+  .welcome .top-position-1 {
+    font-size: 55px;
+  }
+}
+@media (min-width: 960px) {
+  .welcome .top-position-1 {
+    font-size: 85px;
+  }
+}
+.welcome .top-position-2 {
+  white-space: nowrap;
+  position: absolute;
+  font-size: 35px;
+  color: #f4f4f4;
+  background: -webkit-gradient(linear, right top, left top, from(#ee2560), to(#45d9fd));
+  background: linear-gradient(right, #ee2560, #45d9fd);
+  color: transparent;
+  -webkit-background-clip: text;
+  z-index: 10;
+  top: 40%;
+  left: 20%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+@media (min-width: 520px) {
+  .welcome .top-position-2 {
+    font-size: 55px;
+  }
+}
+@media (min-width: 960px) {
+  .welcome .top-position-2 {
+    font-size: 85px;
+  }
+}
+.welcome .top-position-3 {
+  white-space: nowrap;
+  position: absolute;
+  font-size: 35px;
+  color: #f4f4f4;
+  background: -webkit-gradient(linear, right top, left top, from(#ee2560), to(#45d9fd));
+  background: linear-gradient(right, #ee2560, #45d9fd);
+  color: transparent;
+  -webkit-background-clip: text;
+  z-index: 10;
+  top: 60%;
+  left: 20%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+@media (min-width: 520px) {
+  .welcome .top-position-3 {
+    font-size: 55px;
+  }
+}
+@media (min-width: 960px) {
+  .welcome .top-position-3 {
+    font-size: 85px;
+  }
+}
+.welcome .top-position-4 {
+  white-space: nowrap;
+  position: absolute;
+  font-size: 35px;
+  color: #f4f4f4;
+  background: -webkit-gradient(linear, right top, left top, from(#ee2560), to(#45d9fd));
+  background: linear-gradient(right, #ee2560, #45d9fd);
+  color: transparent;
+  -webkit-background-clip: text;
+  z-index: 10;
+  top: 80%;
+  left: 20%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+@media (min-width: 520px) {
+  .welcome .top-position-4 {
+    font-size: 55px;
+  }
+}
+@media (min-width: 960px) {
+  .welcome .top-position-4 {
+    font-size: 85px;
+  }
+}
+
+.container_section {
+  width: 100%;
+  padding: 2%;
+  margin: 0 auto;
+  background-color: #f4f4f4;
+  overflow: hidden;
+  margin-left: -100%;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.container_section.is-show {
+  margin-left: 0;
+}
+.container_section .theme {
+  padding-top: 50px;
+  margin-bottom: 35px;
+  color: #777777;
+  font-size: 60px;
+  text-align: center;
+}
+.container_section .accordion div {
+  width: 100%;
+  line-height: 30px;
+}
+.container_section .accordion div:nth-child(odd) {
+  font-size: 30px;
+  margin-bottom: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.container_section .accordion div:nth-child(odd) img {
+  height: 30px;
+  width: 30px;
+}
+.container_section .accordion div:nth-child(odd) img:not(.toggle) {
+  margin-right: 3%;
+}
+.container_section .accordion div:nth-child(odd) img.toggle {
+  margin-left: auto;
+}
+.container_section .accordion div:nth-child(even) {
+  margin-bottom: 30px;
+}
+.container_section .accordion div:nth-child(even) ul {
+  width: 90%;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+.container_section .accordion div:nth-child(even) ul li {
+  margin: 20px 0;
+  font-size: 27px;
+}
+
+.scroll-to-top {
+  position: fixed;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  right: 5%;
+  bottom: 5%;
+  padding: 5px;
+  width: 50px;
+  height: 50px;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  border-radius: 50%;
+  background-color: #45d9fd;
+  opacity: 0.7;
+}
+.scroll-to-top:hover {
+  opacity: 0.9;
+}
+@media (min-width: 960px) {
+  .scroll-to-top {
+    width: 80px;
+    height: 80px;
+  }
+}/*# sourceMappingURL=home.css.map */
