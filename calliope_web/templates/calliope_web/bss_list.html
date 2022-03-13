@@ -2,39 +2,49 @@
 {% load static %}
 
 {% block head %}
-<title>一覧</title>
-<meta name="description" content="all bss">
-<script src="{% static 'calliope_web/js/bss_list.js' %}"></script>
+  <title>カイッター一覧</title>
+  <meta name="description" content="all bss">
 {% endblock head %}
 
-
 {% block body %}
-  <section class="container">
-    <center>
-      <form method="get">
-        <input type="text" name="query" value={{ request.GET.query }}>
-        <button type="submit">検索</button>
-      </form>
-    </center>
-    <button class="btn btn-primary" onclick="location.href='{% url "calliope_web:bss_create" %}'">新規作成</button>
+  <section class="container my-4">
+    <form method="get" class="row gap-1 justify-content-center p-4">
+      <div class="col text-nowrap text-end">
+        <label for="query" class="col-form-label">検索キーワード:</label>
+      </div>
+      <div class="col-6">
+        <input class="form-control" type="text" id="query" name="query" value={{ request.GET.query }}>
+      </div>
+        <div class="col w-auto">
+          <button type="submit" class="btn btn-success">検索</button>
+        </div>
+    </form>
+
+    <div class="text-center">
+      <a class="btn btn-primary" href={% url "calliope_web:bss_create" %}>新規作成ページへ</a>
+    </div>
+
     {% for bss in bss_list %}
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-subtitle mb-2">{{ bss.author }}</h5>
-        <p class="card-text">{{ bss.body }}</p>
-        <div class="row">
-          <div class="col">
-            <a href={% url 'calliope_web:bss_detail' bss.pk %} class="card-link">詳細</a>
+      <div class="card my-4 rounded">
+        <h5 class="card-header">{{ bss.author }}<span class="text-muted h6">&nbsp;(author)</span></h5>
+        <div class="card-body">
+          <h4 class="card-text mb-3">{{ bss.body }}</h4>
+          <div class="d-flex w-50">
+            <a href={% url 'calliope_web:bss_detail' bss.pk %} class="card-link">詳細ページ</a>
             {% if bss.author == user %}
-              <a href={% url 'calliope_web:bss_update' bss.pk %} class="card-link">編集</a>
-              <a href={% url 'calliope_web:bss_delete' bss.pk %} class="card-link" id="confirm_delete">削除</a>
+            <a href={% url 'calliope_web:bss_update' bss.pk %} class="card-link">編集</a>
+            <a href={% url 'calliope_web:bss_delete' bss.pk %} class="card-link" id="js_confirm_delete">削除</a>
             {% endif %}
           </div>
-          <div class="col align-self-end">{{ bss.updated_at }}
-          </div>
+        </div>
+        <div class="card-footer text-end">
+          更新日時:&nbsp;{{ bss.updated_at }}
         </div>
       </div>
-    </div>
     {% endfor %}
   </section>
 {% endblock body %}
+
+{% block script %}
+  <script src="{% static 'calliope_web/js/bss_list.js' %}"></script>
+{% endblock script %}
