@@ -49,7 +49,6 @@
 
     function slide_section_from_left() {
         const $sections = document.querySelectorAll('section.container_section');
-        console.log($sections);
         $sections.forEach((element) => {
             if(window.innerHeight > element.getBoundingClientRect().top + 200) {
                 element.classList.add('is-show');
@@ -57,6 +56,4 @@
         })
     }
     window.addEventListener('scroll', () => slide_section_from_left());
-
-
 })();
