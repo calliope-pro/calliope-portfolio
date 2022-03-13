@@ -46,15 +46,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.sitemaps',
-
     'cloudinary',
     'cloudinary_storage',
     'rest_framework',
     'rest_framework.authtoken',
     'widget_tweaks',
     'corsheaders',
-    # 'sass'
-
     'calliope_web.apps.CalliopeWebConfig',
     'calliope_bot.apps.CalliopeBotConfig',
     'calliope_auth.apps.CalliopeAuthConfig',
@@ -107,9 +104,7 @@ if DEBUG:
         }
     }
 else:
-    DATABASES = {
-        'default': dj_database_url.config()
-    }
+    DATABASES = {'default': dj_database_url.config()}
 
 
 # Password validation
@@ -159,16 +154,14 @@ PUBLIC_PATHS = [
     r'/line-bot/.*',
     r'/api/.*',
 ]
-PUBLIC_VIEWS = [
-
-]
+PUBLIC_VIEWS = []
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CLOUDINARY_STORAGE = {
-'CLOUD_NAME': os.environ['CLOUDINARY_CLOUD_NAME'],
-'API_KEY': os.environ['CLOUDINARY_API_KEY'],
-'API_SECRET': os.environ['CLOUDINARY_API_SECRET']
+    'CLOUD_NAME': os.environ['CLOUDINARY_CLOUD_NAME'],
+    'API_KEY': os.environ['CLOUDINARY_API_KEY'],
+    'API_SECRET': os.environ['CLOUDINARY_API_SECRET'],
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 

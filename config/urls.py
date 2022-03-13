@@ -19,7 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     path('', include('calliope_web.urls')),
     path('front/', include('calliope_front.urls')),
     path('auth/', include('calliope_auth.urls')),
