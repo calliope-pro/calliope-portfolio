@@ -22,8 +22,6 @@ jobs:
         with:
           # Version range or exact version of a Python version to use, using SemVer's version range syntax.
           python-version: 3.8.8
-          # Used to specify a package manager for caching in the default directory. Supported values: pip, pipenv.
-          cache: pipenv
           # The target architecture (x86, x64) of the Python interpreter.
           architecture: x64
           # Used to pull python distributions from actions/python-versions. Since there's a default, this is typically not supplied by the user.
@@ -31,10 +29,10 @@ jobs:
       - name: Install Liblaries
         run: pipenv install
 
-      - name: Generate time info
+      - name: run collectstatic
         run: pipenv run cs
 
-      - name: Push time info
+      - name: Push collectstatic
         # コミット・プッシュを行ってくれる
         uses: stefanzweifel/git-auto-commit-action@v4.13.1
         with:
