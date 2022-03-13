@@ -52,8 +52,8 @@ jobs:
       - name: Install Liblaries
         run: pipenv install
 
-      - name: run collectstatic
-        run: pipenv run cs
+      - name: run collectstatic --noinput
+        run: pipenv run cs --noinput
 
       - name: Push collectstatic
         # コミット・プッシュを行ってくれる
